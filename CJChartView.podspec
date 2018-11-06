@@ -45,6 +45,8 @@ Pod::Spec.new do |s|
   # 指明CJChartView文件夹下不需要添加到CocoaPods的文件，这里是Exclude文件夹内的内容
   s.exclude_files = "CJChartView/Exclude"
 
+  s.requires_arc = true
+
   # s.public_header_files = "Classes/**/*.h"
 
 
@@ -58,8 +60,6 @@ Pod::Spec.new do |s|
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
-
-  # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
