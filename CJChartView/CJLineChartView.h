@@ -7,7 +7,7 @@
 //
 
 #import "CJChartView.h"
-#import "CJChartModel.h"
+
 
 @interface CJLineChartView : CJChartView
 

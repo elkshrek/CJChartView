@@ -10,6 +10,7 @@
 		88473892219928E10025A694 /* CJProgressChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8847388F219928E00025A694 /* CJProgressChartViewController.xib */; };
 		88473893219928E10025A694 /* CJProgressChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88473890219928E10025A694 /* CJProgressChartViewController.m */; };
 		8847389721993D560025A694 /* ChartExampleShow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8847389621993D560025A694 /* ChartExampleShow.gif */; };
+		8847389A219962960025A694 /* CJTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 88473899219962960025A694 /* CJTool.m */; };
 		886CE14021942CD2005E85D3 /* CJRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886CE13E21942CD2005E85D3 /* CJRootViewController.m */; };
 		886CE14121942CD2005E85D3 /* CJRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886CE13F21942CD2005E85D3 /* CJRootViewController.xib */; };
 		8872AD172190478A00CEE403 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8872AD162190478A00CEE403 /* AppDelegate.m */; };
@@ -52,6 +53,8 @@
 		88473890219928E10025A694 /* CJProgressChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJProgressChartViewController.m; sourceTree = "<group>"; };
 		88473891219928E10025A694 /* CJProgressChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJProgressChartViewController.h; sourceTree = "<group>"; };
 		8847389621993D560025A694 /* ChartExampleShow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ChartExampleShow.gif; sourceTree = "<group>"; };
+		88473898219962960025A694 /* CJTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJTool.h; sourceTree = "<group>"; };
+		88473899219962960025A694 /* CJTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CJTool.m; sourceTree = "<group>"; };
 		886CE13D21942CD2005E85D3 /* CJRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJRootViewController.h; sourceTree = "<group>"; };
 		886CE13E21942CD2005E85D3 /* CJRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CJRootViewController.m; sourceTree = "<group>"; };
 		886CE13F21942CD2005E85D3 /* CJRootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CJRootViewController.xib; sourceTree = "<group>"; };
@@ -192,10 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				88E287992193EC2500103059 /* CJChartHeader.h */,
-				8872AD4D21904A6D00CEE403 /* CJChartModel.h */,
-				8872AD4A21904A6D00CEE403 /* CJChartModel.m */,
 				8872AD5121904A6D00CEE403 /* CJChartView.h */,
 				8872AD4E21904A6D00CEE403 /* CJChartView.m */,
+				8872AD4D21904A6D00CEE403 /* CJChartModel.h */,
+				8872AD4A21904A6D00CEE403 /* CJChartModel.m */,
 				8872AD4821904A6D00CEE403 /* CJLineChartView.h */,
 				8872AD4921904A6D00CEE403 /* CJLineChartView.m */,
 				8872AD4C21904A6D00CEE403 /* CJPieChartView.h */,
@@ -233,6 +236,8 @@
 		88E287982193EBBB00103059 /* CJTool */ = {
 			isa = PBXGroup;
 			children = (
+				88473898219962960025A694 /* CJTool.h */,
+				88473899219962960025A694 /* CJTool.m */,
 			);
 			path = CJTool;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 			files = (
 				88E287952193EAE100103059 /* CJPieChartViewController.m in Sources */,
 				886CE14021942CD2005E85D3 /* CJRootViewController.m in Sources */,
+				8847389A219962960025A694 /* CJTool.m in Sources */,
 				8872AD5421904A6D00CEE403 /* CJChartView.m in Sources */,
 				88E287912193EAE100103059 /* CJProgressChartTableViewCell.m in Sources */,
 				8872AD5321904A6D00CEE403 /* CJChartModel.m in Sources */,
@@ -554,14 +560,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J8BTB638K2;
 				INFOPLIST_FILE = CJChartExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.circus.CJChartExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -570,14 +578,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J8BTB638K2;
 				INFOPLIST_FILE = CJChartExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.circus.CJChartExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

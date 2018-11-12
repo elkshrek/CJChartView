@@ -10,9 +10,16 @@
 
 @interface CJChartModel()
 
-@property (nonatomic, assign) CGFloat startAngle;// 开始角度 [CJPieChartView]
-@property (nonatomic, assign) CGFloat endAngle;  // 结束角度 [CJPieChartView]
-@property (nonatomic, assign) NSUInteger linePointIndex;// 折线图的点index [CJLineChartView]
+// 开始角度 [CJPieChartView]
+@property (nonatomic, assign) CGFloat startAngle;
+// 结束角度 [CJPieChartView]
+@property (nonatomic, assign) CGFloat endAngle;
+
+// 折线图的点index [CJLineChartView]
+@property (nonatomic, assign) NSUInteger linePointIndex;
+
+
+
 
 @end
 
@@ -31,6 +38,8 @@
     return model;
 }
 
+
+// 
 + (instancetype)progressChartCurrent:(CGFloat)current total:(NSInteger)total
 {
     CJChartModel *model = [[[self class] alloc] init];

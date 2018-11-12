@@ -59,7 +59,7 @@
                         <action selector="removeBtnClick:" destination="-1" eventType="touchUpInside" id="o9n-34-FjB"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扇形区选中风格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-hj-b1f">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扇形区选中风格" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-hj-b1f">
                     <rect key="frame" x="50" y="465" width="275" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="AhO-U3-TP5"/>

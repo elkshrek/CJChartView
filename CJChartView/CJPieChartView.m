@@ -89,7 +89,7 @@
 }
 
 // 设置扇形图的分布数据{CJPieChartShowStyleRate风格时layerPieData只有一个元素}
-- (void)setLayerPieData:(NSArray *)layerPieData
+- (void)setLayerPieData:(NSArray<CJChartModel *> *)layerPieData
 {
     NSMutableArray *pieData = [[NSMutableArray alloc] init];
     if (_pieChartShowStyle == CJPieChartShowStyleNormal) {
@@ -328,7 +328,7 @@
         CAShapeLayer *shapeLayer = (CAShapeLayer *)layers[oldIndex];
         [self animationChartLayerStrike:shapeLayer fromValue:fromValue toValue:toValue];
         self.selectPicChartIndex = -1;
-    } else {// 选择的不是一选中的layer
+    } else {// 选择的不是已选中的layer
         CJChartModel *oldModel = _layerPieData[oldIndex];
         NSValue *oldFromValue = [self pointOfShapeLayer:oldModel move:_strikeMove];
         NSValue *oldToValue = [self pointOfShapeLayer:oldModel move:0.f];

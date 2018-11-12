@@ -14,8 +14,8 @@
 @property (nonatomic, strong) UIScrollView *proChartScrollView;
 @property (nonatomic, strong) UIView *proChartContentView;
 
-@property (nonatomic, assign) NSInteger totalProgress;// 总进度
-@property (nonatomic, assign) CGFloat currentProgress;  // 当前进度
+@property (nonatomic, assign) NSInteger totalProgress; // 总进度
+@property (nonatomic, assign) CGFloat currentProgress; // 当前进度
 @property (nonatomic, strong) NSMutableArray *prgChartCellData;
 
 @property (nonatomic, strong) UIColor *curProFromColor;// 当前进度的初始颜色
@@ -31,7 +31,7 @@
 @property (nonatomic, assign) CGFloat progressShowHeight;
 @property (nonatomic, assign) CGFloat progressCellWidth;
 @property (nonatomic, assign) CGFloat progressCellHeight;
-@property (nonatomic, assign) CGFloat progressSpace;// 开始的位置的间隔
+@property (nonatomic, assign) CGFloat progressSpace; // 开始的位置的间隔
 
 
 @end
@@ -270,7 +270,7 @@
     }
     
     [UIView animateWithDuration:(1.f * progress / _totalProgress) animations:^{
-        [_proChartScrollView setContentOffset:offset animated:NO];
+        [self.proChartScrollView setContentOffset:offset animated:NO];
     }];
     
 }

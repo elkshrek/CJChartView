@@ -7,20 +7,28 @@
 //
 
 #import "CJChartView.h"
-#import "CJChartModel.h"
+
 
 // 展示风格
 typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
-    CJPieChartShowStyleNormal = 1 << 0,    // 默认效果
-    CJPieChartShowStyleRate = 1 << 1,      // 占比效果，这种情况下只有一个角度小于1的扇形
-    CJPieChartShowStyleRing = 1 << 2,      // 环状效果，这种情况下只有一个角度小于1的扇形(圆环)
+    // 默认效果
+    CJPieChartShowStyleNormal = 1 << 0,
+    
+    // 占比效果，这种情况下只有一个角度不大于1的扇形
+    CJPieChartShowStyleRate   = 1 << 1,
+    
+    // 环状效果，这种情况下只有一个角度不大于1的扇形(圆环)
+    CJPieChartShowStyleRing   = 1 << 2,
     
 };
 
 // 选中状态风格
 typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
-    CJPieChartSelectStylePurfle = 1 << 0,  // 外围添加一个花边
-    CJPieChartSelectStyleStrike = 1 << 1,  // 向外移动
+    // 外围添加一个花边
+    CJPieChartSelectStylePurfle = 1 << 0,
+    
+    // 向外移动
+    CJPieChartSelectStyleStrike = 1 << 1,
     
 };
 
@@ -28,16 +36,19 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 
 @property (nonatomic, weak) id <CJChartViewDelegate> cj_delegate;
 
-@property (nonatomic, strong) NSArray *layerPieData;
+@property (nonatomic, strong) NSArray<CJChartModel *> *layerPieData;
 
-@property (nonatomic, assign) CJPieChartShowStyle pieChartShowStyle;// 展示风格
-@property (nonatomic, assign) CJPieChartSelectStyle pieChartSelectStyle;// 扇形区选中风格
+// 展示风格 默认CJPieChartShowStyleNormal
+@property (nonatomic, assign) CJPieChartShowStyle pieChartShowStyle;
+
+// 扇形区选中风格 默认CJPieChartSelectStylePurfle
+@property (nonatomic, assign) CJPieChartSelectStyle pieChartSelectStyle;
 
 @property (nonatomic, assign, readonly) CGFloat pieChartOuterRadius;// 外半径
 @property (nonatomic, assign, readonly) CGFloat pieChartInnerRadius; // 内半径
 
 // layerPieData  存储的单位为CJChartModel对象
-- (void)setLayerPieData:(NSArray *)layerPieData;
+- (void)setLayerPieData:(NSArray<CJChartModel *> *)layerPieData;
 
 // 刷新扇形图
 - (void)refreshPieChartLayer;
