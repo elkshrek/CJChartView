@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CJRootViewController">
+            <connections>
+                <outlet property="progressView" destination="3lg-Ss-Eqg" id="CTm-dv-cAf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZU-oI-Spb">
+                    <rect key="frame" x="50" y="50" width="275" height="40"/>
+                    <color key="backgroundColor" red="0.34509803919999998" green="0.72941176470000002" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="48S-7l-9Jk"/>
+                    </constraints>
+                    <state key="normal" title="PieChart"/>
+                    <connections>
+                        <action selector="PieChartButton:" destination="-1" eventType="touchUpInside" id="PGi-q0-5QG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywh-lg-frw">
+                    <rect key="frame" x="50" y="115" width="275" height="40"/>
+                    <color key="backgroundColor" red="0.34509803919999998" green="0.72941176470000002" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="pmc-2R-Oil"/>
+                    </constraints>
+                    <state key="normal" title="ProgressChart"/>
+                    <connections>
+                        <action selector="ProgressChartButton:" destination="-1" eventType="touchUpInside" id="rKY-ea-tVU"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lg-Ss-Eqg" customClass="CJProgressChartView">
+                    <rect key="frame" x="0.0" y="175" width="375" height="100"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="li7-8r-6Qc"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ywh-lg-frw" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="50" id="2Ju-po-dgN"/>
+                <constraint firstItem="3lg-Ss-Eqg" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="2hv-Sz-EX5"/>
+                <constraint firstItem="ywh-lg-frw" firstAttribute="top" secondItem="VZU-oI-Spb" secondAttribute="bottom" constant="25" id="GCV-25-rgV"/>
+                <constraint firstItem="VZU-oI-Spb" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="Jfv-mh-8vB"/>
+                <constraint firstItem="3lg-Ss-Eqg" firstAttribute="top" secondItem="ywh-lg-frw" secondAttribute="bottom" constant="20" id="TwS-Re-oDz"/>
+                <constraint firstItem="VZU-oI-Spb" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="50" id="dIM-tO-A1E"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="VZU-oI-Spb" secondAttribute="trailing" constant="50" id="dX8-I8-wNt"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ywh-lg-frw" secondAttribute="trailing" constant="50" id="hZB-eq-hgn"/>
+                <constraint firstItem="3lg-Ss-Eqg" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="oxs-G7-1W4"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CJPieChartViewController">
+            <connections>
+                <outlet property="chartStyleSegment" destination="ocT-lV-jaP" id="XWl-qm-LBq"/>
+                <outlet property="percentageStyleSegment" destination="yAl-1D-dDe" id="Maz-Mx-vZU"/>
+                <outlet property="pieChartView" destination="yt0-e1-wpA" id="gUQ-ao-XUd"/>
+                <outlet property="refreshButton" destination="Ah7-Jv-iED" id="Gb2-eJ-I31"/>
+                <outlet property="removeButton" destination="3Db-aN-cru" id="TAz-lP-u3N"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yt0-e1-wpA" customClass="CJPieChartView">
+                    <rect key="frame" x="50" y="100" width="275" height="275"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="yt0-e1-wpA" secondAttribute="height" multiplier="1:1" id="Mtq-4l-ZYq"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ah7-Jv-iED">
+                    <rect key="frame" x="50" y="425" width="123" height="30"/>
+                    <color key="backgroundColor" red="0.34509803919999998" green="0.72941176470000002" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="jxc-II-4eX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="refresh">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="refreshBtnClick:" destination="-1" eventType="touchUpInside" id="gRa-GP-Xja"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Db-aN-cru">
+                    <rect key="frame" x="202" y="425" width="123" height="30"/>
+                    <color key="backgroundColor" red="0.34509803919999998" green="0.72941176470000002" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="dvq-7a-Gcf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="remove">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="removeBtnClick:" destination="-1" eventType="touchUpInside" id="o9n-34-FjB"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扇形区选中风格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-hj-b1f">
+                    <rect key="frame" x="50" y="465" width="275" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="AhO-U3-TP5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.34509803919999998" green="0.72941176470000002" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ocT-lV-jaP">
+                    <rect key="frame" x="50" y="485" width="275" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="iAn-to-8P7"/>
+                    </constraints>
+                    <segments>
+                        <segment title="Purfle"/>
+                        <segment title="Strike"/>
+                    </segments>
+                    <connections>
+                        <action selector="pieChartStyleSegment:" destination="-1" eventType="valueChanged" id="kXi-bK-mFp"/>
+                    </connections>
+                </segmentedControl>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扇形区占比风格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVB-gk-ajK">
+                    <rect key="frame" x="50" y="525" width="275" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="8WH-Jq-4Mc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.34509803919999998" green="0.72941176470000002" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yAl-1D-dDe">
+                    <rect key="frame" x="50" y="545" width="275" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="1Tz-4O-gdz"/>
+                    </constraints>
+                    <segments>
+                        <segment title="normal"/>
+                        <segment title="rate"/>
+                        <segment title="ring"/>
+                    </segments>
+                    <connections>
+                        <action selector="piePercentageStyleSegment:" destination="-1" eventType="valueChanged" id="uZz-0I-idC"/>
+                    </connections>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="cVB-gk-ajK" secondAttribute="trailing" constant="50" id="1c9-rQ-Xh9"/>
+                <constraint firstItem="yt0-e1-wpA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="5HE-23-d9G"/>
+                <constraint firstItem="Ah7-Jv-iED" firstAttribute="width" secondItem="3Db-aN-cru" secondAttribute="width" id="780-ki-l3L"/>
+                <constraint firstAttribute="trailing" secondItem="ocT-lV-jaP" secondAttribute="trailing" constant="50" id="8sa-1h-cgr"/>
+                <constraint firstItem="yt0-e1-wpA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="A0V-mK-gl8"/>
+                <constraint firstItem="9oy-hj-b1f" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="G1a-eq-uWV"/>
+                <constraint firstItem="9oy-hj-b1f" firstAttribute="top" secondItem="3Db-aN-cru" secondAttribute="bottom" constant="10" id="Jzl-ZW-bh8"/>
+                <constraint firstItem="cVB-gk-ajK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="L2i-fx-zCQ"/>
+                <constraint firstAttribute="trailing" secondItem="yt0-e1-wpA" secondAttribute="trailing" constant="50" id="Qsf-sr-fcX"/>
+                <constraint firstAttribute="trailing" secondItem="3Db-aN-cru" secondAttribute="trailing" constant="50" id="SBo-7p-Zf2"/>
+                <constraint firstItem="cVB-gk-ajK" firstAttribute="top" secondItem="ocT-lV-jaP" secondAttribute="bottom" constant="12" id="Tcn-Kd-UvA"/>
+                <constraint firstAttribute="trailing" secondItem="9oy-hj-b1f" secondAttribute="trailing" constant="50" id="U4B-nc-vc6"/>
+                <constraint firstItem="3Db-aN-cru" firstAttribute="leading" secondItem="Ah7-Jv-iED" secondAttribute="trailing" constant="29" id="V3X-FX-xLb"/>
+                <constraint firstItem="ocT-lV-jaP" firstAttribute="top" secondItem="3Db-aN-cru" secondAttribute="bottom" constant="30" id="XEM-XI-hqe"/>
+                <constraint firstItem="ocT-lV-jaP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="gyd-hF-793"/>
+                <constraint firstItem="Ah7-Jv-iED" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="hHP-PM-CSY"/>
+                <constraint firstItem="yAl-1D-dDe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="jWj-mM-5ft"/>
+                <constraint firstItem="Ah7-Jv-iED" firstAttribute="top" secondItem="yt0-e1-wpA" secondAttribute="bottom" constant="50" id="o3V-bo-8wb"/>
+                <constraint firstItem="3Db-aN-cru" firstAttribute="top" secondItem="yt0-e1-wpA" secondAttribute="bottom" constant="50" id="xaM-fZ-EGm"/>
+                <constraint firstItem="yAl-1D-dDe" firstAttribute="top" secondItem="cVB-gk-ajK" secondAttribute="bottom" constant="4" id="yMg-23-GUy"/>
+                <constraint firstAttribute="trailing" secondItem="yAl-1D-dDe" secondAttribute="trailing" constant="50" id="ymS-Rj-KRp"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+</document>

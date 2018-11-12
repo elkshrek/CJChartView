@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88473892219928E10025A694 /* CJProgressChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8847388F219928E00025A694 /* CJProgressChartViewController.xib */; };
+		88473893219928E10025A694 /* CJProgressChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88473890219928E10025A694 /* CJProgressChartViewController.m */; };
+		886CE14021942CD2005E85D3 /* CJRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886CE13E21942CD2005E85D3 /* CJRootViewController.m */; };
+		886CE14121942CD2005E85D3 /* CJRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886CE13F21942CD2005E85D3 /* CJRootViewController.xib */; };
 		8872AD172190478A00CEE403 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8872AD162190478A00CEE403 /* AppDelegate.m */; };
-		8872AD1A2190478A00CEE403 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8872AD192190478A00CEE403 /* ViewController.m */; };
 		8872AD1D2190478A00CEE403 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8872AD1B2190478A00CEE403 /* Main.storyboard */; };
 		8872AD1F2190478D00CEE403 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8872AD1E2190478D00CEE403 /* Assets.xcassets */; };
 		8872AD222190478D00CEE403 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8872AD202190478D00CEE403 /* LaunchScreen.storyboard */; };
@@ -20,6 +23,10 @@
 		8872AD5421904A6D00CEE403 /* CJChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8872AD4E21904A6D00CEE403 /* CJChartView.m */; };
 		8872AD5521904A6D00CEE403 /* CJPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8872AD4F21904A6D00CEE403 /* CJPieChartView.m */; };
 		8872AD5621904A6D00CEE403 /* CJProgressChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8872AD5021904A6D00CEE403 /* CJProgressChartView.m */; };
+		88E287912193EAE100103059 /* CJProgressChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E287882193EAE100103059 /* CJProgressChartTableViewCell.m */; };
+		88E287932193EAE100103059 /* CJPieChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E2878B2193EAE100103059 /* CJPieChartViewController.xib */; };
+		88E287942193EAE100103059 /* CJProgressChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E2878C2193EAE100103059 /* CJProgressChartTableViewCell.xib */; };
+		88E287952193EAE100103059 /* CJPieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2878E2193EAE100103059 /* CJPieChartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,11 +47,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8847388F219928E00025A694 /* CJProgressChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CJProgressChartViewController.xib; sourceTree = "<group>"; };
+		88473890219928E10025A694 /* CJProgressChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJProgressChartViewController.m; sourceTree = "<group>"; };
+		88473891219928E10025A694 /* CJProgressChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJProgressChartViewController.h; sourceTree = "<group>"; };
+		886CE13D21942CD2005E85D3 /* CJRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJRootViewController.h; sourceTree = "<group>"; };
+		886CE13E21942CD2005E85D3 /* CJRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CJRootViewController.m; sourceTree = "<group>"; };
+		886CE13F21942CD2005E85D3 /* CJRootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CJRootViewController.xib; sourceTree = "<group>"; };
 		8872AD122190478A00CEE403 /* CJChartExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CJChartExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8872AD152190478A00CEE403 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8872AD162190478A00CEE403 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8872AD182190478A00CEE403 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8872AD192190478A00CEE403 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8872AD1C2190478A00CEE403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8872AD1E2190478D00CEE403 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8872AD212190478D00CEE403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,6 +77,13 @@
 		8872AD4F21904A6D00CEE403 /* CJPieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJPieChartView.m; sourceTree = "<group>"; };
 		8872AD5021904A6D00CEE403 /* CJProgressChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJProgressChartView.m; sourceTree = "<group>"; };
 		8872AD5121904A6D00CEE403 /* CJChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJChartView.h; sourceTree = "<group>"; };
+		88E287882193EAE100103059 /* CJProgressChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJProgressChartTableViewCell.m; sourceTree = "<group>"; };
+		88E287892193EAE100103059 /* CJPieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJPieChartViewController.h; sourceTree = "<group>"; };
+		88E2878B2193EAE100103059 /* CJPieChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CJPieChartViewController.xib; sourceTree = "<group>"; };
+		88E2878C2193EAE100103059 /* CJProgressChartTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CJProgressChartTableViewCell.xib; sourceTree = "<group>"; };
+		88E2878E2193EAE100103059 /* CJPieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJPieChartViewController.m; sourceTree = "<group>"; };
+		88E2878F2193EAE100103059 /* CJProgressChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJProgressChartTableViewCell.h; sourceTree = "<group>"; };
+		88E287992193EC2500103059 /* CJChartHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJChartHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +137,11 @@
 			children = (
 				8872AD152190478A00CEE403 /* AppDelegate.h */,
 				8872AD162190478A00CEE403 /* AppDelegate.m */,
-				8872AD182190478A00CEE403 /* ViewController.h */,
-				8872AD192190478A00CEE403 /* ViewController.m */,
+				886CE13D21942CD2005E85D3 /* CJRootViewController.h */,
+				886CE13E21942CD2005E85D3 /* CJRootViewController.m */,
+				886CE13F21942CD2005E85D3 /* CJRootViewController.xib */,
+				88E287972193EB1500103059 /* PieChart */,
+				88E287962193EAF600103059 /* ProgressChart */,
 				8872AD1B2190478A00CEE403 /* Main.storyboard */,
 				8872AD1E2190478D00CEE403 /* Assets.xcassets */,
 				8872AD202190478D00CEE403 /* LaunchScreen.storyboard */,
@@ -151,6 +172,7 @@
 		8872AD472190492C00CEE403 /* CJChartView */ = {
 			isa = PBXGroup;
 			children = (
+				88E287992193EC2500103059 /* CJChartHeader.h */,
 				8872AD4D21904A6D00CEE403 /* CJChartModel.h */,
 				8872AD4A21904A6D00CEE403 /* CJChartModel.m */,
 				8872AD5121904A6D00CEE403 /* CJChartView.h */,
@@ -161,8 +183,39 @@
 				8872AD4F21904A6D00CEE403 /* CJPieChartView.m */,
 				8872AD4B21904A6D00CEE403 /* CJProgressChartView.h */,
 				8872AD5021904A6D00CEE403 /* CJProgressChartView.m */,
+				88E287982193EBBB00103059 /* CJTool */,
 			);
 			path = CJChartView;
+			sourceTree = "<group>";
+		};
+		88E287962193EAF600103059 /* ProgressChart */ = {
+			isa = PBXGroup;
+			children = (
+				88473891219928E10025A694 /* CJProgressChartViewController.h */,
+				88473890219928E10025A694 /* CJProgressChartViewController.m */,
+				8847388F219928E00025A694 /* CJProgressChartViewController.xib */,
+				88E2878F2193EAE100103059 /* CJProgressChartTableViewCell.h */,
+				88E287882193EAE100103059 /* CJProgressChartTableViewCell.m */,
+				88E2878C2193EAE100103059 /* CJProgressChartTableViewCell.xib */,
+			);
+			path = ProgressChart;
+			sourceTree = "<group>";
+		};
+		88E287972193EB1500103059 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				88E287892193EAE100103059 /* CJPieChartViewController.h */,
+				88E2878E2193EAE100103059 /* CJPieChartViewController.m */,
+				88E2878B2193EAE100103059 /* CJPieChartViewController.xib */,
+			);
+			path = PieChart;
+			sourceTree = "<group>";
+		};
+		88E287982193EBBB00103059 /* CJTool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CJTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,8 +322,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8872AD222190478D00CEE403 /* LaunchScreen.storyboard in Resources */,
+				886CE14121942CD2005E85D3 /* CJRootViewController.xib in Resources */,
 				8872AD1F2190478D00CEE403 /* Assets.xcassets in Resources */,
+				88E287932193EAE100103059 /* CJPieChartViewController.xib in Resources */,
 				8872AD1D2190478A00CEE403 /* Main.storyboard in Resources */,
+				88473892219928E10025A694 /* CJProgressChartViewController.xib in Resources */,
+				88E287942193EAE100103059 /* CJProgressChartTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,13 +352,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E287952193EAE100103059 /* CJPieChartViewController.m in Sources */,
+				886CE14021942CD2005E85D3 /* CJRootViewController.m in Sources */,
 				8872AD5421904A6D00CEE403 /* CJChartView.m in Sources */,
-				8872AD1A2190478A00CEE403 /* ViewController.m in Sources */,
+				88E287912193EAE100103059 /* CJProgressChartTableViewCell.m in Sources */,
 				8872AD5321904A6D00CEE403 /* CJChartModel.m in Sources */,
 				8872AD252190478D00CEE403 /* main.m in Sources */,
 				8872AD5221904A6D00CEE403 /* CJLineChartView.m in Sources */,
 				8872AD172190478A00CEE403 /* AppDelegate.m in Sources */,
 				8872AD5521904A6D00CEE403 /* CJPieChartView.m in Sources */,
+				88473893219928E10025A694 /* CJProgressChartViewController.m in Sources */,
 				8872AD5621904A6D00CEE403 /* CJProgressChartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

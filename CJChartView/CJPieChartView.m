@@ -88,7 +88,7 @@
     [self setExclusiveTouch:YES];
 }
 
-// 设置扇形图的分布数据{CJPieChartShowStyleRate风格是layerPieData只有一个元素}
+// 设置扇形图的分布数据{CJPieChartShowStyleRate风格时layerPieData只有一个元素}
 - (void)setLayerPieData:(NSArray *)layerPieData
 {
     NSMutableArray *pieData = [[NSMutableArray alloc] init];
