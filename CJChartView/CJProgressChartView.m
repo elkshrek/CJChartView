@@ -137,7 +137,9 @@
     NSMutableArray *subViews = [NSMutableArray arrayWithArray:[_proChartContentView subviews]];
     while (subViews.count > 0) {
         UIView *view = (UIView *)[subViews firstObject];
-        [view removeFromSuperview];
+        if ([view superview]) {
+            [view removeFromSuperview];
+        }
         [subViews removeObject:view];
     }
     
