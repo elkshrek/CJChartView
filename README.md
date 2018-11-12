@@ -4,4 +4,5 @@
 持续更新中。。。
 
 效果展示
+
 ![img](https://github.com/CircusJonathan/CJChartView/blob/master/CJChartExample/Others/gif/ChartExampleShow.gif)
