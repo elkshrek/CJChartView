@@ -40,7 +40,7 @@
                                    [CJChartModel modelWithStart:0.8f end:0.95f],
                                    [CJChartModel modelWithStart:0.95f end:1.0f]];
     _pieChartView.cj_delegate = self;
-    
+//    _pieChartView.pieChartLineWidth = 50;
     
     self.refreshButton.layer.cornerRadius = 3.f;
     self.refreshButton.layer.masksToBounds = YES;
@@ -93,6 +93,9 @@
     } else if (sender.selectedSegmentIndex == 2) {
         _pieChartView.pieChartShowStyle = CJPieChartShowStyleRing;
         [self.chartStyleSegment setEnabled:NO];
+    }else if(sender.selectedSegmentIndex == 3){
+        _pieChartView.pieChartShowStyle = CJPieChartShowStyleJagged;
+        [self.chartStyleSegment setEnabled:YES];
     }
     
 }

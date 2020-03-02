@@ -20,6 +20,9 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
     // 环状效果，这种情况下只有一个角度不大于1的扇形(圆环)
     CJPieChartShowStyleRing   = 1 << 2,
     
+    // 类锯齿效果,扇形半径不等
+    CJPieChartShowStyleJagged = 1 << 3,
+    
 };
 
 // 选中状态风格
@@ -46,6 +49,9 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 
 @property (nonatomic, assign, readonly) CGFloat pieChartOuterRadius;// 外半径
 @property (nonatomic, assign, readonly) CGFloat pieChartInnerRadius; // 内半径
+
+@property (nonatomic, assign) CGFloat pieChartLineWidth; //线宽,可传入值|默认: 外半径 - 内半径
+
 
 // layerPieData  存储的单位为CJChartModel对象
 - (void)setLayerPieData:(NSArray<CJChartModel *> *)layerPieData;
