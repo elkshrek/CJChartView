@@ -47,10 +47,12 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 // 扇形区选中风格 默认CJPieChartSelectStylePurfle
 @property (nonatomic, assign) CJPieChartSelectStyle pieChartSelectStyle;
 
-@property (nonatomic, assign, readonly) CGFloat pieChartOuterRadius;// 外半径
-@property (nonatomic, assign, readonly) CGFloat pieChartInnerRadius; // 内半径
+@property (nonatomic, assign, readonly) CGFloat pieChartOuterRadius;// 外半径 ≈ self.frame.width/2
+@property (nonatomic, assign, readonly) CGFloat pieChartInnerRadius; // 内半径 = 外半径 - 线宽(默认:20)
 
-@property (nonatomic, assign) CGFloat pieChartLineWidth; //线宽,可传入值|默认: 外半径 - 内半径
+@property (nonatomic, assign) CGFloat pieChartLineWidth; //线宽,可传入值|默认:为20
+@property (nonatomic, strong) UIColor * centerTitleColor;
+@property (nonatomic, strong) NSString * centerTitle;
 
 
 // layerPieData  存储的单位为CJChartModel对象
@@ -62,4 +64,6 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 // 移除扇形图层
 - (void)removePieChartLayer;
 
+- (instancetype)initWithFrame:(CGRect)frame centerTitle:(NSString*)centerTitle;
 @end
+

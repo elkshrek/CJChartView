@@ -30,7 +30,7 @@
 // duration
 @property (nonatomic, assign) CGFloat showDuration;  // Chart加载动画时长
 @property (nonatomic, assign) CGFloat strikeDuration;// Strike风格的动画时间
-
+//@property (nonatomic, strong) NSString * centerTitle;
 
 @end
 
@@ -38,13 +38,18 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
+    return [self initWithFrame:frame centerTitle:@""];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame centerTitle:(NSString*)centerTitle
+{
     self = [super initWithFrame:frame];
     if (self) {
+        _centerTitle = centerTitle;
         [self initChartInfo];
     }
     return self;
 }
-
 
 - (void)awakeFromNib
 {
@@ -54,11 +59,9 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGRect chartRect = self.bounds;
-    _pieChartOuterRadius = chartRect.size.width / 4 - _purfleWidth;
-    _pieChartInnerRadius = chartRect.size.width / 6;
-    _pieChartCenter = CGPointMake(chartRect.size.width / 2, chartRect.size.width / 2);
-    
+    _pieChartOuterRadius = self.bounds.size.width / 2 - _purfleWidth;
+    _pieChartInnerRadius = _pieChartOuterRadius - _pieChartLineWidth;
+    _pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.width / 2);
     [self refreshPieChartLayer];
 }
 
@@ -68,23 +71,27 @@
     _purfleWidth = 10.f;
     _strikeDuration = 0.2f;
     _showDuration = 0.6f;
+    _pieChartLineWidth = 20;
     _selectPicChartIndex = -1;
     _selectedPieChart = nil;
     _pieChartShowStyle = CJPieChartShowStyleNormal;
     _pieChartSelectStyle = CJPieChartSelectStylePurfle;
-    _pieChartLineWidth = 0;
+
+    
     if (!_ChartView) {
-        _percentageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _pieChartInnerRadius * cos(M_PI_4), _pieChartInnerRadius * sin(M_PI_4))];
+        _percentageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, _pieChartInnerRadius * cos(M_PI_4), _pieChartInnerRadius * sin(M_PI_4))];
         _percentageLabel.center = _pieChartCenter;
         _percentageLabel.backgroundColor = [UIColor clearColor];
-        _percentageLabel.textColor = CJHexColor(0x58bac3, 1.f);
-        _percentageLabel.font = [UIFont systemFontOfSize:18.f];
+        _percentageLabel.textColor = UIColor.blackColor; //CJHexColor(0x58bac3, 1.f);
+        _percentageLabel.font = [UIFont systemFontOfSize:12.f];
         _percentageLabel.textAlignment = NSTextAlignmentCenter;
         _percentageLabel.userInteractionEnabled = NO;
+        _percentageLabel.text = self.centerTitle;
         [self addSubview:_percentageLabel];
         _ChartView = [[UIView alloc] initWithFrame:self.bounds];
         _ChartView.backgroundColor = [UIColor clearColor];
         [self addSubview:_ChartView];
+        
     }
     [self setExclusiveTouch:YES];
 }
@@ -130,6 +137,8 @@
         [self setUserInteractionEnabled:NO];
     } else if (pieChartShowStyle == CJPieChartShowStyleRing) {// CJPieChartShowStyleRing
         [self setUserInteractionEnabled:NO];
+    }else if(pieChartShowStyle == CJPieChartShowStyleJagged) {// CJPieChartShowStyleJagged
+        [self setUserInteractionEnabled:YES];
     }
     _pieChartShowStyle = pieChartShowStyle;
     [self refreshPieChartLayer];
@@ -137,9 +146,22 @@
 
 - (void)setPercentageLabelText:(CJChartModel *)chartModel
 {
-    _percentageLabel.text = @"";
-    if ([chartModel isKindOfClass:[CJChartModel class]]) {
-        _percentageLabel.text = [NSString stringWithFormat:@"%.1f%%", (chartModel.endPercentage - chartModel.startPercentage) * 100];
+     _percentageLabel.text = @"";
+    if (chartModel == nil) {
+        _percentageLabel.text = self.centerTitle;
+        _percentageLabel.textColor = self.centerTitleColor;
+    }else{
+        if ([chartModel isKindOfClass:[CJChartModel class]]) {
+            _percentageLabel.text = [NSString stringWithFormat:@"%.1f%%", (chartModel.endPercentage - chartModel.startPercentage) * 100];
+        }
+    }
+}
+
+- (void)setCenterTitleColor:(UIColor *)centerTitleColor
+{
+    if (centerTitleColor) {
+        _centerTitleColor = centerTitleColor;
+        _percentageLabel.textColor = centerTitleColor;
     }
 }
 // 刷新扇形图层
@@ -177,6 +199,7 @@
             [_ChartView.layer addSublayer:shapeLayer];
         }
         [self addPicChartAnimation:YES];
+        [self setPercentageLabelText:nil];
         [self setUserInteractionEnabled:YES];
         
     } else if (_pieChartShowStyle == CJPieChartShowStyleRate) {// 占比效果
@@ -204,7 +227,8 @@
         [self addAnimationToLayer:_ringPieChart startPercentage:model.startPercentage endPercentage:model.endPercentage animation:YES];
         [self setPercentageLabelText:model];
     }else if(_pieChartShowStyle == CJPieChartShowStyleJagged){//锯齿效果
-        CGFloat lineWidth = _pieChartLineWidth == 0 ? _pieChartOuterRadius - _pieChartInnerRadius : _pieChartLineWidth;
+        CGFloat fault = (_layerPieData.count *5);
+        CGFloat lineWidth = _pieChartLineWidth == 0 ? _pieChartOuterRadius -  _pieChartInnerRadius - fault : _pieChartLineWidth;
         for (int i = 0; i < _layerPieData.count; i++) {
            CJChartModel *model = _layerPieData[i];
            lineWidth += 5;
@@ -213,6 +237,7 @@
            [_ChartView.layer addSublayer:shapeLayer];
        }
        [self addPicChartAnimation:YES];
+       [self setPercentageLabelText:nil];
        [self setUserInteractionEnabled:YES];
     }
 }
@@ -436,3 +461,4 @@
 
 
 @end
+

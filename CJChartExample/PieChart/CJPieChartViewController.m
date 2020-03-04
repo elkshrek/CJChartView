@@ -41,7 +41,7 @@
                                    [CJChartModel modelWithStart:0.95f end:1.0f]];
     _pieChartView.cj_delegate = self;
 //    _pieChartView.pieChartLineWidth = 50;
-    
+//    _pieChartView.centerTitle = @"我的财富";
     self.refreshButton.layer.cornerRadius = 3.f;
     self.refreshButton.layer.masksToBounds = YES;
     self.removeButton.layer.cornerRadius = 3.f;
