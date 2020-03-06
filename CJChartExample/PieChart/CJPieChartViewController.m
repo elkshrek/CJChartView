@@ -64,7 +64,7 @@
 
 - (IBAction)refreshBtnClick:(UIButton *)sender {
     
-    [self.pieChartView refreshPieChartLayer];
+    [self.pieChartView refreshPieChartLayer:YES];
     
 }
 
