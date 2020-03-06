@@ -30,22 +30,22 @@ Pod::Spec.new do |s|
     s.source       = { :git => "https://github.com/elkshrek/CJChartView.git", :tag => "#{s.version}" }
     
     s.subspec 'ChartView' do |cvs|
-        cvs.source_files = 'CJChartView/ChartView/**/*.{h,m}'
+        cvs.source_files = 'CJChartView/ChartView/*.{h,m}'
         cvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'PieChartView' do |pcs|
-        pcs.source_files = 'CJChartView/PieChartView/**/*.{h,m}'
+        pcs.source_files = 'CJChartView/PieChartView/*.{h,m}'
         pcs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'ProgressChartView' do |pvs|
-        pvs.source_files = 'CJChartView/ProgressChartView/**/*.{h,m}'
+        pvs.source_files = 'CJChartView/ProgressChartView/*.{h,m}'
         pvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'LineChartView' do |lvs|
-        lvs.source_files = 'CJChartView/LineChartView/**/*.{h,m}'
+        lvs.source_files = 'CJChartView/LineChartView/*.{h,m}'
         lvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
