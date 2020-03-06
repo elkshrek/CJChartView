@@ -53,9 +53,9 @@ Pod::Spec.new do |s|
         lvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
-    s.dependency "CJChartView/PieChartView"
-    s.dependency "CJChartView/ProgressChartView"
-    s.dependency "CJChartView/LineChartView"
+    #s.dependency "CJChartView/PieChartView"
+    #s.dependency "CJChartView/ProgressChartView"
+    #s.dependency "CJChartView/LineChartView"
     #s.public_header_files = "CJChartView/CJChartHeader.h"
     s.source_files = "CJChartView", "CJChartView/CJChartHeader.h"
     
