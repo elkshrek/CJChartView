@@ -53,7 +53,6 @@ Pod::Spec.new do |s|
         lvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
-    s.dependency "CJChartView/ChartView"
     s.dependency "CJChartView/PieChartView"
     s.dependency "CJChartView/ProgressChartView"
     s.dependency "CJChartView/LineChartView"
