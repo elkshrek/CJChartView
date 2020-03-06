@@ -30,22 +30,26 @@ Pod::Spec.new do |s|
     s.source       = { :git => "https://github.com/elkshrek/CJChartView.git", :tag => "#{s.version}" }
     
     s.subspec 'ChartView' do |cvs|
-        cvs.source_files = 'CJChartView/ChartView/*.{h,m}'
+        cvs.source_files = 'CJChartView/ChartView/CJChartView.{h,m}'
+        cvs.public_header_files = 'CJChartView/ChartView/CJChartView.h'
         cvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'PieChartView' do |pcs|
-        pcs.source_files = 'CJChartView/PieChartView/*.{h,m}'
+        pcs.source_files = 'CJChartView/PieChartView/CJPieChart{View,Model}.{h,m}'
+        pcs.public_header_files = 'CJChartView/PieChartView/CJPieChart{View,Model}.h'
         pcs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'ProgressChartView' do |pvs|
-        pvs.source_files = 'CJChartView/ProgressChartView/*.{h,m}'
+        pvs.source_files = 'CJChartView/ProgressChartView/CJProgressChart{View,Model}.{h,m}'
+        pvs.public_header_files = 'CJChartView/ProgressChartView/CJProgressChart{View,Model}.h'
         pvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'LineChartView' do |lvs|
-        lvs.source_files = 'CJChartView/LineChartView/*.{h,m}'
+        lvs.source_files = 'CJChartView/LineChartView/CJLineChart{View,Model}.{h,m}'
+        lvs.public_header_files = 'CJChartView/LineChartView/CJLineChart{View,Model}.h'
         lvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
