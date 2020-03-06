@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
     s.name         = "CJChartView"
     
     # 库的版本
-    s.version      = "0.0.8"
+    s.version      = "0.0.9"
 
     # 库摘要
     s.summary      = "简单易用的统计图表(包括：扇形图、进度条、柱状图、折线图。。。)"
@@ -29,9 +29,28 @@ Pod::Spec.new do |s|
     # 下载地址
     s.source       = { :git => "https://github.com/elkshrek/CJChartView.git", :tag => "#{s.version}" }
     
+    s.subspec 'ChartView' do |cvs|
+        cvs.source_files = 'CJChartView/ChartView/**/*.{h,m}'
+        cvs.ios.frameworks = 'Foundation', 'UIKit'
+    end
     
-   # s.public_header_files = "CJChartView/CJChartHeader.h"
-    s.source_files = "CJChartView", "CJChartView/**/*.{h,m}"
+    s.subspec 'PieChartView' do |pcs|
+        pcs.source_files = 'CJChartView/PieChartView/**/*.{h,m}'
+        pcs.ios.frameworks = 'Foundation', 'UIKit'
+    end
+    
+    s.subspec 'ProgressChartView' do |pvs|
+        pvs.source_files = 'CJChartView/ProgressChartView/**/*.{h,m}'
+        pvs.ios.frameworks = 'Foundation', 'UIKit'
+    end
+    
+    s.subspec 'LineChartView' do |lvs|
+        lvs.source_files = 'CJChartView/LineChartView/**/*.{h,m}'
+        lvs.ios.frameworks = 'Foundation', 'UIKit'
+    end
+    
+    #s.public_header_files = "CJChartView/CJChartHeader.h"
+    s.source_files = "CJChartView", "CJChartView/CJChartHeader.{h,m}"
 
     # ARC
     s.requires_arc = true
