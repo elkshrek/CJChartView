@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yt0-e1-wpA" customClass="CJPieHoopChartView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yt0-e1-wpA" customClass="CJPieChartView">
                     <rect key="frame" x="50" y="120" width="275" height="275"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>

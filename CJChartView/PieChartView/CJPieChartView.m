@@ -1,5 +1,5 @@
 //
-//  CJPieChartView.m
+//  CJPieChartView.h
 //  CJChartExample
 //
 //  Created by Jonathan on 2017/4/16.
@@ -21,8 +21,6 @@
 @property (nonatomic, assign) CGFloat pieChartOuterRadius; // 外半径
 @property (nonatomic, assign) CGFloat pieChartInnerRadius; // 内半径
 @property (nonatomic, assign) CGPoint pieChartCenter;      // 中心
-/// 环宽,可设置值  默认等于外半径
-@property (nonatomic, assign) CGFloat pieChartLineWidth;
 
 @property (nonatomic, strong) CAShapeLayer *selectedPieChart;// 选中的PieChart(Purfle风格启用)
 @property (nonatomic, assign) NSInteger selectPicChartIndex; // 选中的PicChartIndex -1 未选中任何扇形区域
@@ -65,10 +63,8 @@
 - (void)drawRect:(CGRect)rect
 {
     _pieChartOuterRadius = self.bounds.size.width / 2 - _purfleWidth;
-    _pieChartLineWidth = _pieChartOuterRadius;
-    _pieChartInnerRadius = 0.f;
     _pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.width / 2);
-    [self refreshPieChartLayer:YES];
+    [self refreshPieChartLayer:NO];
 }
 
 - (void)configChartInfo
@@ -77,14 +73,21 @@
     _purfleWidth = 10.f;
     _strikeDuration = 0.2f;
     _showDuration = 0.6f;
-    _pieChartLineWidth = 0.f;
+    _pieHoopWidth = 20.f;
     _selectPicChartIndex = -1;
     _selectedPieChart = nil;
+    _pieChartType = CJPieNormalChart;
     _pieChartShowStyle = CJPieChartShowStyleNormal;
     _pieChartSelectStyle = CJPieChartSelectStylePurfle;
     
     if (!_chartView) {
-        _percentageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, _pieChartInnerRadius * cos(M_PI_4), _pieChartInnerRadius * sin(M_PI_4))];
+        _chartView = [[UIView alloc] initWithFrame:self.bounds];
+        _chartView.backgroundColor = [UIColor clearColor];
+        [self addSubview:_chartView];
+        
+        CGFloat radius = _pieChartInnerRadius > 30.f ? _pieChartInnerRadius : 30.f;
+        CGFloat pgWidth = 2.f * radius * cos(M_PI_4);
+        _percentageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, pgWidth, pgWidth)];
         _percentageLabel.center = _pieChartCenter;
         _percentageLabel.backgroundColor = [UIColor clearColor];
         _percentageLabel.textColor = UIColor.blackColor; //CJHexColor(0x58bac3, 1.f);
@@ -93,10 +96,6 @@
         _percentageLabel.userInteractionEnabled = NO;
         _percentageLabel.text = self.centerTitle;
         [self addSubview:_percentageLabel];
-        _chartView = [[UIView alloc] initWithFrame:self.bounds];
-        _chartView.backgroundColor = [UIColor clearColor];
-        [self addSubview:_chartView];
-        
     }
     [self setExclusiveTouch:YES];
 }
@@ -105,7 +104,7 @@
 - (void)setLayerPieData:(NSArray<CJPieChartModel *> *)layerPieData
 {
     NSMutableArray *pieData = [[NSMutableArray alloc] init];
-    if (self.pieChartShowStyle == CJPieChartShowStyleNormal || _pieChartShowStyle == CJPieChartShowStyleJagged) {
+    if (self.pieChartShowStyle == CJPieChartShowStyleNormal || self.pieChartShowStyle == CJPieChartShowStyleJagged) {
         NSInteger count = layerPieData.count;
         CGFloat alphaUnit = 0.6 / (count * 1.f);
         for (int i = 0; i < count; i++) {
@@ -115,11 +114,11 @@
             }
             [pieData addObject:model];
         }
-    } else if (_pieChartShowStyle == CJPieChartShowStyleRate) {
+    } else if (self.pieChartShowStyle == CJPieChartShowStyleRate) {
         CJPieChartModel *model = [layerPieData firstObject];
         model.chartColor = [UIColor colorWithRed:(88.f / 256.f) green:(186.f / 256.f) blue:(195.f / 256.f) alpha:0.75f];
         [pieData addObject:model];
-    } else if (_pieChartShowStyle == CJPieChartShowStyleRing) {
+    } else if (self.pieChartShowStyle == CJPieChartShowStyleRing) {
         CJPieChartModel *model = [layerPieData firstObject];
         model.chartColor = [UIColor colorWithRed:(88.f / 256.f) green:(186.f / 256.f) blue:(195.f / 256.f) alpha:0.75f];
         [pieData addObject:model];
@@ -127,7 +126,13 @@
     
     _layerPieData = pieData;
     [self removePieChartLayer];
-    [self addPieChartToView];
+    [self addPieChartToView:YES];
+}
+
+- (void)setPieChartType:(CJPieChartType)pieChartType
+{
+    _pieChartType = pieChartType;
+    [self refreshPieChartLayer:YES];
 }
 
 - (void)setPieChartSelectStyle:(CJPieChartSelectStyle)pieChartSelectStyle
@@ -154,7 +159,7 @@
 - (void)setCenterTitleColor:(UIColor *)centerTitleColor
 {
     if (centerTitleColor) {
-        self.centerTitleColor = centerTitleColor;
+        _centerTitleColor = centerTitleColor;
         self.percentageLabel.textColor = centerTitleColor;
     }
 }
@@ -172,15 +177,27 @@
     }
 }
 
+- (CGFloat)pieChartInnerRadius
+{
+    if (self.pieChartType == CJPieNormalChart) {
+        return 0.f;
+    } else {// CJPieHoopChart
+        CGFloat radius = self.pieChartOuterRadius - self.pieHoopWidth;
+        return radius > 0.f ? radius : 0.f;
+    }
+}
+
 // 刷新扇形图层
 - (void)refreshPieChartLayer:(BOOL)animation
 {
-    self.percentageLabel.frame = CGRectMake(0, 0, 2 * self.pieChartInnerRadius * cos(M_PI_4),  2 * self.pieChartInnerRadius * sin(M_PI_4));
+    CGFloat radius = self.pieChartInnerRadius > 30.f ? self.pieChartInnerRadius : 30.f;
+    CGFloat pgWidth = 2.f * radius * cos(M_PI_4);
+    self.percentageLabel.frame = CGRectMake(0, 0, pgWidth, pgWidth);
     [self setPercentageLabelText:nil];
     self.percentageLabel.center = self.pieChartCenter;
     self.chartView.frame = self.bounds;
     [self removePieChartLayer];
-    [self addPieChartToView];
+    [self addPieChartToView:animation];
 }
 
 // 删除当前页面的所有扇形图层
@@ -199,57 +216,57 @@
 }
 
 #pragma mark -- 创建扇形图层添加到图层上
-- (void)addPieChartToView
+- (void)addPieChartToView:(BOOL)animation
 {
     if (self.pieChartShowStyle == CJPieChartShowStyleNormal) { // 默认效果
         for (int i = 0; i < self.layerPieData.count; i++) {
             CJPieChartModel *model = self.layerPieData[i];
-            CGFloat lineWidth = self.pieChartLineWidth == 0 ? self.pieChartOuterRadius - self.pieChartInnerRadius : self.pieChartLineWidth;
+            CGFloat lineWidth = self.pieChartOuterRadius - self.pieChartInnerRadius;
             CGFloat radius = self.pieChartInnerRadius + lineWidth / 2;
             CAShapeLayer *shapeLayer = [self pieShapeLayerCenter:self.pieChartCenter radius:radius lineWidth:lineWidth startAngle:model.startAngle endAngle:model.endAngle color:model.chartColor clockwise:YES];
             [self.chartView.layer addSublayer:shapeLayer];
         }
-        [self addPicChartAnimation:YES];
+        [self addPicChartAnimation:animation];
         [self setPercentageLabelText:nil];
         [self setUserInteractionEnabled:YES];
         
     } else if (self.pieChartShowStyle == CJPieChartShowStyleRate) {// 占比效果
-        CGFloat lineWidth = _pieChartLineWidth == 0 ? _pieChartOuterRadius - _pieChartInnerRadius : _pieChartLineWidth;
-        CGFloat radius = _pieChartInnerRadius + lineWidth / 2;
+        CGFloat lineWidth = self.pieChartOuterRadius - self.pieChartInnerRadius;
+        CGFloat radius = self.pieChartInnerRadius + lineWidth / 2;
         CAShapeLayer *layer = [self pieShapeLayerCenter:_pieChartCenter radius:radius lineWidth:lineWidth startAngle:(-M_PI_2) endAngle:(3 * M_PI_2) color:[UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.1f] clockwise:YES];
         [_chartView.layer addSublayer:layer];
         
         CJPieChartModel *model = [_layerPieData firstObject];
-        _ratePieChart = [self pieShapeLayerCenter:_pieChartCenter radius:radius lineWidth:lineWidth startAngle:model.startAngle endAngle:model.endAngle color:model.chartColor clockwise:YES];
-        [_chartView.layer addSublayer:_ratePieChart];
-        [self addAnimationToLayer:_ratePieChart startPercentage:model.startPercentage endPercentage:model.endPercentage animation:YES];
+        self.ratePieChart = [self pieShapeLayerCenter:self.pieChartCenter radius:radius lineWidth:lineWidth startAngle:model.startAngle endAngle:model.endAngle color:model.chartColor clockwise:YES];
+        [_chartView.layer addSublayer:self.ratePieChart];
+        [self addAnimationToLayer:self.ratePieChart startPercentage:model.startPercentage endPercentage:model.endPercentage animation:animation];
         [self setPercentageLabelText:model];
-    } else if (_pieChartShowStyle == CJPieChartShowStyleRing) {// 环状效果
-        CGFloat lineWidth = _pieChartOuterRadius - _pieChartInnerRadius;
-        CGFloat radius = _pieChartInnerRadius + lineWidth / 2;
-        CAShapeLayer *layer = [self pieShapeLayerCenter:_pieChartCenter radius:radius lineWidth:lineWidth startAngle:(-M_PI_2) endAngle:(3 * M_PI_2) color:[UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.1f] clockwise:YES];
+    } else if (self.pieChartShowStyle == CJPieChartShowStyleRing) {// 环状效果
+        CGFloat lineWidth = self.pieChartOuterRadius - self.pieChartInnerRadius;
+        CGFloat radius = self.pieChartInnerRadius + lineWidth / 2;
+        CAShapeLayer *layer = [self pieShapeLayerCenter:self.pieChartCenter radius:radius lineWidth:lineWidth startAngle:(-M_PI_2) endAngle:(3 * M_PI_2) color:[UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.1f] clockwise:YES];
         [_chartView.layer addSublayer:layer];
         
         CJPieChartModel *model = [_layerPieData firstObject];
         lineWidth = 10.f;
-        radius = _pieChartOuterRadius - lineWidth / 2;
-        _ringPieChart = [self ringPieShapeLayerCenter:_pieChartCenter radius:radius lineWidth:lineWidth startAngle:model.startAngle endAngle:model.endAngle color:model.chartColor clockwise:YES];
-        [_chartView.layer addSublayer:_ringPieChart];
-        [self addAnimationToLayer:_ringPieChart startPercentage:model.startPercentage endPercentage:model.endPercentage animation:YES];
+        radius = self.pieChartOuterRadius - lineWidth / 2;
+        self.ringPieChart = [self ringPieShapeLayerCenter:self.pieChartCenter radius:radius lineWidth:lineWidth startAngle:model.startAngle endAngle:model.endAngle color:model.chartColor clockwise:YES];
+        [_chartView.layer addSublayer:self.ringPieChart];
+        [self addAnimationToLayer:self.ringPieChart startPercentage:model.startPercentage endPercentage:model.endPercentage animation:animation];
         [self setPercentageLabelText:model];
     } else if(_pieChartShowStyle == CJPieChartShowStyleJagged) {//锯齿效果
-        CGFloat fault = (_layerPieData.count * 5);
-        CGFloat lineWidth = _pieChartLineWidth == 0 ? _pieChartOuterRadius -  _pieChartInnerRadius - fault : _pieChartLineWidth;
+//        CGFloat fault = (_layerPieData.count * 5);
+        CGFloat lineWidth = self.pieChartOuterRadius - self.pieChartInnerRadius;
         for (int i = 0; i < _layerPieData.count; i++) {
-           CJPieChartModel *model = _layerPieData[i];
-           lineWidth += 5;
-           CGFloat radius = _pieChartInnerRadius + lineWidth / 2;
-           CAShapeLayer *shapeLayer = [self pieShapeLayerCenter:_pieChartCenter radius:radius lineWidth:lineWidth startAngle:model.startAngle endAngle:model.endAngle color:model.chartColor clockwise:YES];
-           [_chartView.layer addSublayer:shapeLayer];
-       }
-       [self addPicChartAnimation:YES];
-       [self setPercentageLabelText:nil];
-       [self setUserInteractionEnabled:YES];
+            CJPieChartModel *model = _layerPieData[i];
+            CGFloat radius = self.pieChartInnerRadius + lineWidth / 2;
+            CAShapeLayer *shapeLayer = [self pieShapeLayerCenter:self.pieChartCenter radius:radius lineWidth:lineWidth startAngle:model.startAngle endAngle:model.endAngle color:model.chartColor clockwise:YES];
+            [_chartView.layer addSublayer:shapeLayer];
+            lineWidth += 5;
+        }
+        [self addPicChartAnimation:animation];
+        [self setPercentageLabelText:nil];
+        [self setUserInteractionEnabled:YES];
     }
 }
 
@@ -354,9 +371,9 @@
     CGFloat alphaFloat = components[3];
     UIColor *selectColor = [UIColor colorWithRed:redFloat green:greenFloat blue:blueFloat alpha:(alphaFloat * 0.5f)];
     
-    CGFloat pieRadius = _pieChartOuterRadius + _purfleWidth / 2.f;
+    CGFloat pieRadius = self.pieChartOuterRadius + _purfleWidth / 2.f;
     if (self.pieChartShowStyle == CJPieChartShowStyleJagged) {
-        pieRadius += 5.f * (index + 1);
+        pieRadius += 5.f * index;
     }
     self.selectedPieChart = [self pieShapeLayerCenter:_pieChartCenter radius:pieRadius lineWidth:_purfleWidth startAngle:model.startAngle endAngle:model.endAngle color:selectColor clockwise:YES];
     [_chartView.layer addSublayer:self.selectedPieChart];
@@ -434,7 +451,8 @@
 }
 
 // 获取点击位置的百分位置
-- (CGFloat)findPercentageOfAngleInCircle:(CGPoint)center fromPoint:(CGPoint)reference{
+- (CGFloat)findPercentageOfAngleInCircle:(CGPoint)center fromPoint:(CGPoint)reference
+{
     CGFloat angleOfLine = atanf((reference.y - center.y) / (reference.x - center.x));
     CGFloat percentage = (angleOfLine + M_PI_2) / (2 * M_PI);
     return (reference.x - center.x) > 0 ? percentage : percentage + .5;

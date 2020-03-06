@@ -13,10 +13,8 @@
 // 统计图表基类图
 #import "CJChartView.h"
 
-/// 统计饼图
+/// 统计饼图 : 扇形 | 环状
 #import "CJPieChartView.h"
-/// 环状饼图
-#import "CJPieHoopChartView.h"
 #import "CJPieChartModel.h"
 
 
