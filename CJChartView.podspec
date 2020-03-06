@@ -30,8 +30,8 @@ Pod::Spec.new do |s|
     s.source       = { :git => "https://github.com/elkshrek/CJChartView.git", :tag => "#{s.version}" }
     
     
-    s.public_header_files = 'CJChartView/CJChartHeader.h'
-    s.source_files = 'CJChartView/**/*.{h,m}'
+   # s.public_header_files = "CJChartView/CJChartHeader.h"
+    s.source_files = "CJChartView", "CJChartView/**/*.{h,m}"
 
     # ARC
     s.requires_arc = true
