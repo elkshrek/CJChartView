@@ -1,5 +1,5 @@
 //
-//  CJPieChartView.h
+//  CJPieHoopChartView.h
 //  CJChartExample
 //
 //  Created by Jonathan on 2017/4/16.
@@ -7,6 +7,7 @@
 //
 
 #import "CJChartView.h"
+#import "CJPieChartModel.h"
 
 
 // 展示风格
@@ -35,11 +36,12 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
     
 };
 
-@interface CJPieChartView : CJChartView
+/// 环状饼图
+@interface CJPieHoopChartView : CJChartView
 
 @property (nonatomic, weak) id <CJChartViewDelegate> cj_delegate;
 
-@property (nonatomic, strong) NSArray<CJChartModel *> *layerPieData;
+@property (nonatomic, strong) NSArray<CJPieChartModel *> *layerPieData;
 
 // 展示风格 默认CJPieChartShowStyleNormal
 @property (nonatomic, assign) CJPieChartShowStyle pieChartShowStyle;
@@ -56,7 +58,7 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 
 
 // layerPieData  存储的单位为CJChartModel对象
-- (void)setLayerPieData:(NSArray<CJChartModel *> *)layerPieData;
+- (void)setLayerPieData:(NSArray<CJPieChartModel *> *)layerPieData;
 
 // 刷新扇形图
 - (void)refreshPieChartLayer;
@@ -65,5 +67,7 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 - (void)removePieChartLayer;
 
 - (instancetype)initWithFrame:(CGRect)frame centerTitle:(NSString*)centerTitle;
+
+
 @end
 

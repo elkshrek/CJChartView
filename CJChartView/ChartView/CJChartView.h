@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CJChartHeader.h"
-#import "CJChartModel.h"
-
 
 @protocol CJChartViewDelegate <NSObject>
 
@@ -20,12 +17,9 @@
 - (void)CJPieChartDidUnselect;
 
 
-
-
 @end
 
-
-
 @interface CJChartView : UIView
+
 
 @end

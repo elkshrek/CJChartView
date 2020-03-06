@@ -8,7 +8,7 @@
 
 #import "CJChartView.h"
 
-
+/// 线形统计图
 @interface CJLineChartView : CJChartView
 
 

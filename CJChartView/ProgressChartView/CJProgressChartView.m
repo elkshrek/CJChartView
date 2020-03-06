@@ -7,7 +7,10 @@
 //
 
 #import "CJProgressChartView.h"
-#import "CJChartModel.h"
+
+#ifndef CJHexColor
+#define CJHexColor(colorH,a) [UIColor colorWithRed:((float)((colorH & 0xff0000) >> 16)) / 255.0 green:((float)((colorH & 0x00ff00) >> 8)) / 255.0 blue:((float)(colorH & 0x0000ff)) / 255.0 alpha:a]
+#endif
 
 @interface CJProgressChartView()<UIGestureRecognizerDelegate>
 
@@ -18,12 +21,8 @@
 @property (nonatomic, assign) CGFloat currentProgress; // 当前进度
 @property (nonatomic, strong) NSMutableArray *prgChartCellData;
 
-@property (nonatomic, strong) UIColor *curProFromColor;// 当前进度的初始颜色
-@property (nonatomic, strong) UIColor *curProToColor;  // 当前进度的结束颜色
-@property (nonatomic, strong) UIColor *anchorColor;    // 锚点颜色
-@property (nonatomic, strong) UIColor *backProColor;   // 背景总进度颜色
-
-@property (nonatomic, assign) NSInteger progressShowNum;// 单页最多显示数量
+/// 单页最多显示数量  default: 10
+@property (nonatomic, assign) NSInteger progressShowNum;
 
 @property (nonatomic, assign) CGFloat progressChartWidth;
 @property (nonatomic, assign) CGFloat progressChartHeight;
@@ -130,10 +129,6 @@
     _proChartScrollView.center = CGPointMake(_progressChartWidth / 2, (_progressChartHeight / 2.f));
     _proChartContentView.frame = CGRectMake(0, 0, (_totalProgress * _progressCellWidth + 2 * _progressSpace), _progressShowHeight);
     _proChartScrollView.contentSize = _proChartContentView.bounds.size;
-    while ([[_proChartContentView.layer sublayers] count] > 0) {
-        CALayer *layer = (CALayer *)[[_proChartContentView.layer sublayers] firstObject];
-        [layer removeFromSuperlayer];
-    }
     NSMutableArray *subViews = [NSMutableArray arrayWithArray:[_proChartContentView subviews]];
     while (subViews.count > 0) {
         UIView *view = (UIView *)[subViews firstObject];
@@ -141,6 +136,12 @@
             [view removeFromSuperview];
         }
         [subViews removeObject:view];
+    }
+    while ([[_proChartContentView.layer sublayers] count] > 0) {
+        CALayer *layer = (CALayer *)[[_proChartContentView.layer sublayers] firstObject];
+        if ([layer superlayer]) {
+            [layer removeFromSuperlayer];
+        }
     }
     
     CAShapeLayer *totalShapeLayer = [self progressShapeLayerProgress:_totalProgress color:_backProColor];

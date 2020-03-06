@@ -7,7 +7,6 @@
 //
 
 #import "CJProgressChartViewController.h"
-#import "CJProgressChartView.h"
 #import "CJProgressChartTableViewCell.h"
 
 @interface CJProgressChartViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
@@ -44,42 +43,42 @@
     self.tableView.rowHeight = 100.f;
     [self.view addSubview:self.tableView];
     
-    self.dataSource = [NSMutableArray arrayWithArray:@[[CJChartModel progressChartCurrent:0.f total:10],
-                                                       [CJChartModel progressChartCurrent:3.5f total:7],
-                                                       [CJChartModel progressChartCurrent:2.1 total:5],
-                                                       [CJChartModel progressChartCurrent:10.2 total:14],
-                                                       [CJChartModel progressChartCurrent:9.0 total:9],
-                                                       [CJChartModel progressChartCurrent:0.4 total:10],
-                                                       [CJChartModel progressChartCurrent:8.5 total:10],
-                                                       [CJChartModel progressChartCurrent:5.9 total:18],
-                                                       [CJChartModel progressChartCurrent:4.5 total:13],
-                                                       [CJChartModel progressChartCurrent:11.5 total:15],
-                                                       [CJChartModel progressChartCurrent:7.8 total:12],
-                                                       [CJChartModel progressChartCurrent:11.5 total:14],
-                                                       [CJChartModel progressChartCurrent:12.5 total:16],
-                                                       [CJChartModel progressChartCurrent:10.5 total:15],
-                                                       [CJChartModel progressChartCurrent:5.5 total:13],
-                                                       [CJChartModel progressChartCurrent:8.5 total:16],
-                                                       [CJChartModel progressChartCurrent:5.5 total:18],
-                                                       [CJChartModel progressChartCurrent:12.5 total:16],
-                                                       [CJChartModel progressChartCurrent:4.5 total:10],
-                                                       [CJChartModel progressChartCurrent:6.5 total:15],
-                                                       [CJChartModel progressChartCurrent:7.0 total:16],
-                                                       [CJChartModel progressChartCurrent:9.4 total:10],
-                                                       [CJChartModel progressChartCurrent:1.0 total:13],
-                                                       [CJChartModel progressChartCurrent:2.4 total:18],
-                                                       [CJChartModel progressChartCurrent:0.3 total:22],
-                                                       [CJChartModel progressChartCurrent:5.9 total:18],
-                                                       [CJChartModel progressChartCurrent:4.5 total:13],
-                                                       [CJChartModel progressChartCurrent:11.5 total:15],
-                                                       [CJChartModel progressChartCurrent:7.8 total:12],
-                                                       [CJChartModel progressChartCurrent:11.5 total:14],
-                                                       [CJChartModel progressChartCurrent:12.5 total:16],
-                                                       [CJChartModel progressChartCurrent:10.5 total:15],
-                                                       [CJChartModel progressChartCurrent:5.5 total:13],
-                                                       [CJChartModel progressChartCurrent:8.5 total:16],
-                                                       [CJChartModel progressChartCurrent:5.5 total:18],
-                                                       [CJChartModel progressChartCurrent:12.5 total:16]]];
+    self.dataSource = [NSMutableArray arrayWithArray:@[[CJProgressChartModel progressChartCurrent:0.f total:10],
+                                                       [CJProgressChartModel progressChartCurrent:3.5f total:7],
+                                                       [CJProgressChartModel progressChartCurrent:2.1 total:5],
+                                                       [CJProgressChartModel progressChartCurrent:10.2 total:14],
+                                                       [CJProgressChartModel progressChartCurrent:9.0 total:9],
+                                                       [CJProgressChartModel progressChartCurrent:0.4 total:10],
+                                                       [CJProgressChartModel progressChartCurrent:8.5 total:10],
+                                                       [CJProgressChartModel progressChartCurrent:5.9 total:18],
+                                                       [CJProgressChartModel progressChartCurrent:4.5 total:13],
+                                                       [CJProgressChartModel progressChartCurrent:11.5 total:15],
+                                                       [CJProgressChartModel progressChartCurrent:7.8 total:12],
+                                                       [CJProgressChartModel progressChartCurrent:11.5 total:14],
+                                                       [CJProgressChartModel progressChartCurrent:12.5 total:16],
+                                                       [CJProgressChartModel progressChartCurrent:10.5 total:15],
+                                                       [CJProgressChartModel progressChartCurrent:5.5 total:13],
+                                                       [CJProgressChartModel progressChartCurrent:8.5 total:16],
+                                                       [CJProgressChartModel progressChartCurrent:5.5 total:18],
+                                                       [CJProgressChartModel progressChartCurrent:12.5 total:16],
+                                                       [CJProgressChartModel progressChartCurrent:4.5 total:10],
+                                                       [CJProgressChartModel progressChartCurrent:6.5 total:15],
+                                                       [CJProgressChartModel progressChartCurrent:7.0 total:16],
+                                                       [CJProgressChartModel progressChartCurrent:9.4 total:10],
+                                                       [CJProgressChartModel progressChartCurrent:1.0 total:13],
+                                                       [CJProgressChartModel progressChartCurrent:2.4 total:18],
+                                                       [CJProgressChartModel progressChartCurrent:0.3 total:22],
+                                                       [CJProgressChartModel progressChartCurrent:5.9 total:18],
+                                                       [CJProgressChartModel progressChartCurrent:4.5 total:13],
+                                                       [CJProgressChartModel progressChartCurrent:11.5 total:15],
+                                                       [CJProgressChartModel progressChartCurrent:7.8 total:12],
+                                                       [CJProgressChartModel progressChartCurrent:11.5 total:14],
+                                                       [CJProgressChartModel progressChartCurrent:12.5 total:16],
+                                                       [CJProgressChartModel progressChartCurrent:10.5 total:15],
+                                                       [CJProgressChartModel progressChartCurrent:5.5 total:13],
+                                                       [CJProgressChartModel progressChartCurrent:8.5 total:16],
+                                                       [CJProgressChartModel progressChartCurrent:5.5 total:18],
+                                                       [CJProgressChartModel progressChartCurrent:12.5 total:16]]];
     
     
     
@@ -94,7 +93,7 @@
 {
     CJProgressChartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CJProgressChartTableViewCell" forIndexPath:indexPath];
     if (cell) {
-        CJChartModel *model = self.dataSource[indexPath.row];
+        CJProgressChartModel *model = self.dataSource[indexPath.row];
         
         [cell.progressChartView setTotalProgress:model.totalProgress currentProgress:model.currentProgress];
         

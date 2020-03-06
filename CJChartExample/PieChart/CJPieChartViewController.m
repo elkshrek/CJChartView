@@ -7,12 +7,11 @@
 //
 
 #import "CJPieChartViewController.h"
-#import "CJPieChartView.h"
 
 
 @interface CJPieChartViewController ()<CJChartViewDelegate>
 
-@property (weak, nonatomic) IBOutlet CJPieChartView *pieChartView;
+@property (weak, nonatomic) IBOutlet CJPieHoopChartView *pieChartView;
 
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 
@@ -34,14 +33,15 @@
     self.title = @"PieChart";
     
     
-    _pieChartView.layerPieData = @[[CJChartModel modelWithStart:0.f end:0.4f],
-                                   [CJChartModel modelWithStart:0.4f end:0.7f],
-                                   [CJChartModel modelWithStart:0.7f end:0.8f],
-                                   [CJChartModel modelWithStart:0.8f end:0.95f],
-                                   [CJChartModel modelWithStart:0.95f end:1.0f]];
+    _pieChartView.layerPieData = @[[CJPieChartModel modelWithStart:0.f end:0.4f],
+                                   [CJPieChartModel modelWithStart:0.4f end:0.7f],
+                                   [CJPieChartModel modelWithStart:0.7f end:0.8f],
+                                   [CJPieChartModel modelWithStart:0.8f end:0.95f],
+                                   [CJPieChartModel modelWithStart:0.95f end:1.0f]];
     _pieChartView.cj_delegate = self;
     _pieChartView.pieChartLineWidth = 50;
     _pieChartView.centerTitle = @"我的财富";
+    
     self.refreshButton.layer.cornerRadius = 3.f;
     self.refreshButton.layer.masksToBounds = YES;
     self.removeButton.layer.cornerRadius = 3.f;

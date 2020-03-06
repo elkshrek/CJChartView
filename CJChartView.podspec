@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
     s.name         = "CJChartView"
 
     # 库的版本
-    s.version      = "0.0.4"
+    s.version      = "0.0.6"
 
     # 库摘要
     s.summary      = "简单易用的统计图表(包括：扇形图、进度条、柱状图、折线图。。。)"
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
                     DESC
 
     # 远程仓库地址，即 GitHub 的地址，或者你使用的其他的 Gitlab，码云的地址
-    s.homepage     = "https://github.com/CircusJonathan/CJChartView"
+    s.homepage     = "https://github.com/elkshrek/CJChartView"
 
     # 协议
     s.license      = "MIT"
@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
     # s.tvos.deployment_target = "9.0"
 
     # 下载地址，即远程仓库的 GitHub下载地址(clone 地址)，使用.git结尾
-    s.source       = { :git => "https://github.com/CircusJonathan/CJChartView.git", :tag => "#{s.version}" }
+    s.source       = { :git => "https://github.com/elkshrek/CJChartView.git", :tag => "#{s.version}" }
 
     # 库文件在仓库中的相对路径
     # 等号后面的第一个参数表示的是要添加 CocoaPods 依赖的库在项目中的相对路径

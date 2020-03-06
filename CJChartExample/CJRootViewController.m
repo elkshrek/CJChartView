@@ -7,7 +7,6 @@
 //
 
 #import "CJRootViewController.h"
-#import "CJProgressChartView.h"
 #import "CJPieChartViewController.h"
 #import "CJProgressChartViewController.h"
 

@@ -10,12 +10,25 @@
 #define CJChartHeader_h
 
 
+// 统计图表基类图
+#import "CJChartView.h"
 
-#define CJNavStatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)
+/// 统计饼图
+#import "CJPieChartView.h"
+/// 环状饼图
+#import "CJPieHoopChartView.h"
+#import "CJPieChartModel.h"
 
 
+/// 线形统计图
+#import "CJLineChartView.h"
+#import "CJLineChartModel.h"
 
-#define CJHexColor(colorH,a) [UIColor colorWithRed:((float)((colorH & 0xff0000) >> 16)) / 255.0 green:((float)((colorH & 0x00ff00) >> 8)) / 255.0 blue:((float)(colorH & 0x0000ff)) / 255.0 alpha:a]
+
+/// 仿网易云音乐等级进度条
+#import "CJProgressChartView.h"
+#import "CJProgressChartModel.h"
+
 
 
 

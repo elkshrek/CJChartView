@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CJProgressChartView.h"
 
 @interface CJProgressChartTableViewCell : UITableViewCell
 
