@@ -37,19 +37,19 @@ Pod::Spec.new do |s|
     
     s.subspec 'PieChartView' do |pcs|
         pcs.dependency "CJChartView/ChartView"
-        pcs.source_files = "CJChartView", "CJChartView/PieChartView/**/*.{h,m}"
+        pcs.source_files = "CJChartView/PieChartView/**/*.{h,m}"
         pcs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'ProgressChartView' do |pvs|
         pvs.dependency "CJChartView/ChartView"
-        pvs.source_files = "CJChartView", "CJChartView/ProgressChartView/**/*.{h,m}"
+        pvs.source_files = "CJChartView/ProgressChartView/**/*.{h,m}"
         pvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'LineChartView' do |lvs|
         lvs.dependency "CJChartView/ChartView"
-        lvs.source_files = "CJChartView", "CJChartView/LineChartView/**/*.{h,m}"
+        lvs.source_files = "CJChartView/LineChartView/**/*.{h,m}"
         lvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
