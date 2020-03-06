@@ -29,8 +29,6 @@ Pod::Spec.new do |s|
     # 下载地址
     s.source       = { :git => "https://github.com/elkshrek/CJChartView.git", :tag => "#{s.version}" }
     
-    #s.public_header_files = "CJChartView/CJChartHeader.h"
-    s.source_files = "CJChartView", "CJChartView/CJChartHeader.h"
     
     s.subspec 'ChartView' do |cvs|
         cvs.source_files = "CJChartView", "CJChartView/ChartView/**/*.{h,m}"
@@ -54,6 +52,13 @@ Pod::Spec.new do |s|
         lvs.source_files = "CJChartView", "CJChartView/LineChartView/**/*.{h,m}"
         lvs.ios.frameworks = 'Foundation', 'UIKit'
     end
+    
+    s.dependency "CJChartView/ChartView"
+    s.dependency "CJChartView/PieChartView"
+    s.dependency "CJChartView/ProgressChartView"
+    s.dependency "CJChartView/LineChartView"
+    #s.public_header_files = "CJChartView/CJChartHeader.h"
+    s.source_files = "CJChartView", "CJChartView/CJChartHeader.h"
     
     
     # ARC
