@@ -33,14 +33,16 @@
     self.title = @"PieChart";
     
     
-    _pieChartView.layerPieData = @[[CJPieChartModel modelWithStart:0.f end:0.4f],
-                                   [CJPieChartModel modelWithStart:0.4f end:0.7f],
-                                   [CJPieChartModel modelWithStart:0.7f end:0.8f],
-                                   [CJPieChartModel modelWithStart:0.8f end:0.95f],
-                                   [CJPieChartModel modelWithStart:0.95f end:1.0f]];
+    _pieChartView.layerPieData = @[[CJPieChartModel modelWithStart:0.f end:0.89f],
+                                   [CJPieChartModel modelWithStart:0.f end:0.77f],
+                                   [CJPieChartModel modelWithStart:0.f end:0.88f],
+                                   [CJPieChartModel modelWithStart:0.f end:0.7f],
+                                   [CJPieChartModel modelWithStart:0.f end:0.8f],
+                                   [CJPieChartModel modelWithStart:0.f end:0.95f],
+                                   [CJPieChartModel modelWithStart:0.f end:1.0f]];
     _pieChartView.cj_delegate = self;
-    _pieChartView.pieChartType = CJPieHoopChart;
-    _pieChartView.pieHoopWidth = 50;
+//    _pieChartView.pieChartType = CJPieHoopChart;
+    _pieChartView.pieHoopWidth = 120;
     _pieChartView.centerTitle = @"我的财富";
     
     self.refreshButton.layer.cornerRadius = 3.f;
@@ -97,8 +99,9 @@
     }else if(sender.selectedSegmentIndex == 3){
         _pieChartView.pieChartShowStyle = CJPieChartShowStyleJagged;
         [self.chartStyleSegment setEnabled:YES];
-    }
-    
+    }else if (sender.selectedSegmentIndex == 4)
+        _pieChartView.pieChartShowStyle = CJPieChartShowStyleRose;
+        [self.chartStyleSegment setEnabled:YES];
 }
 
 

@@ -151,6 +151,8 @@
         [self setUserInteractionEnabled:NO];
     }else if(pieChartShowStyle == CJPieChartShowStyleJagged) {// CJPieChartShowStyleJagged
         [self setUserInteractionEnabled:YES];
+    }else if( pieChartShowStyle == CJPieChartShowStyleRose) {// CJPieChartShowStyleRose
+        [self setUserInteractionEnabled:YES];
     }
     _pieChartShowStyle = pieChartShowStyle;
     [self refreshPieChartLayer:YES];
@@ -255,7 +257,6 @@
         [self addAnimationToLayer:self.ringPieChart startPercentage:model.startPercentage endPercentage:model.endPercentage animation:animation];
         [self setPercentageLabelText:model];
     } else if(_pieChartShowStyle == CJPieChartShowStyleJagged) {//锯齿效果
-//        CGFloat fault = (_layerPieData.count * 5);
         CGFloat lineWidth = self.pieChartOuterRadius - self.pieChartInnerRadius;
         for (int i = 0; i < _layerPieData.count; i++) {
             CJPieChartModel *model = _layerPieData[i];
@@ -267,6 +268,33 @@
         [self addPicChartAnimation:animation];
         [self setPercentageLabelText:nil];
         [self setUserInteractionEnabled:YES];
+    }else if (_pieChartShowStyle == CJPieChartShowStyleRose){
+        
+        CGFloat x = (1.f/_layerPieData.count);//单位扇形所占份额
+        CGFloat sun = x;//累加份额
+        CGFloat startAngle = 0.f * (2 * M_PI) - M_PI_2;//起始角度
+        CGFloat endAngle = sun * (2 * M_PI) - M_PI_2;//结束角度
+        
+        CGFloat lineWidth = 0.f;
+       
+        for (int i = 0; i < _layerPieData.count; i++) {
+            
+           CJPieChartModel *model = _layerPieData[i];
+           lineWidth = (model.endPercentage - model.startPercentage)*self.pieChartOuterRadius;
+           CGFloat radius = self.pieChartInnerRadius + lineWidth / 2;
+           CAShapeLayer *shapeLayer = [self pieShapeLayerCenter:self.pieChartCenter radius:radius lineWidth:lineWidth startAngle:startAngle endAngle:endAngle color:model.chartColor clockwise:YES];
+           [_chartView.layer addSublayer:shapeLayer];
+        //计算下一个扇形的起始角度和s结束角度
+        startAngle = endAngle;//下一个扇形的起始角度 = 上一个扇形的结束角度
+        if (i<_layerPieData.count-1) {
+            sun+=x;
+            endAngle = sun* (2 * M_PI) - M_PI_2;
+         }
+        }
+        [self addPicChartAnimation:animation];
+        [self setPercentageLabelText:nil];
+        [self setUserInteractionEnabled:YES];
+    
     }
 }
 

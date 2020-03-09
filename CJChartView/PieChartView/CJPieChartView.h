@@ -28,6 +28,8 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
     CJPieChartShowStyleRing   = 1 << 2,
     /// 类锯齿效果,扇形半径不等
     CJPieChartShowStyleJagged = 1 << 3,
+    /// 南丁格尔玫瑰图:等分每个扇形,半径代表数值
+    CJPieChartShowStyleRose   = 1 << 4,
     
 };
 
