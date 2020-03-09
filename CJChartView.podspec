@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
     s.author       = { 'Jonathan' => 'Jonathan_dk@163.com' }
 
     # 下载地址
-    s.source       = { :git => 'https://github.com/elkshrek/CJChartView.git', :tag => '#{s.version}' }
+    s.source       = { :git => "https://github.com/elkshrek/CJChartView.git", :tag => "#{s.version}" }
     s.requires_arc = true
     s.platform     = :ios, '9.0'
     
