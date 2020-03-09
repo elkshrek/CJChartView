@@ -20,6 +20,13 @@
 
 @implementation CJPieChartModel
 
+/// 扇形图Model
+/// value:数据,百分比,小于1
++ (instancetype)modelRoseWithValue:(CGFloat)value
+{
+    return [CJPieChartModel modelWithStart:0.f end:value];
+}
+
 
 /// 扇形图Model
 /// @param startPer 开始百分比

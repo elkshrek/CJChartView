@@ -33,13 +33,21 @@
     self.title = @"PieChart";
     
     
-    _pieChartView.layerPieData = @[[CJPieChartModel modelWithStart:0.f end:0.89f],
-                                   [CJPieChartModel modelWithStart:0.f end:0.77f],
-                                   [CJPieChartModel modelWithStart:0.f end:0.88f],
-                                   [CJPieChartModel modelWithStart:0.f end:0.7f],
-                                   [CJPieChartModel modelWithStart:0.f end:0.8f],
-                                   [CJPieChartModel modelWithStart:0.f end:0.95f],
-                                   [CJPieChartModel modelWithStart:0.f end:1.0f]];
+//    _pieChartView.layerPieData = @[[CJPieChartModel modelWithStart:0.f end:0.89f],
+//                                   [CJPieChartModel modelWithStart:0.f end:0.77f],
+//                                   [CJPieChartModel modelWithStart:0.f end:0.88f],
+//                                   [CJPieChartModel modelWithStart:0.f end:0.7f],
+//                                   [CJPieChartModel modelWithStart:0.f end:0.8f],
+//                                   [CJPieChartModel modelWithStart:0.f end:0.95f],
+//                                   [CJPieChartModel modelWithStart:0.f end:1.0f]];
+    //南丁格尔玫瑰图:数据或 [CJPieChartModel modelWithStart:0.f end:1.0f]];
+    _pieChartView.layerPieData = @[[CJPieChartModel modelRoseWithValue:0.89f],
+                                      [CJPieChartModel modelRoseWithValue:0.77f],
+                                      [CJPieChartModel modelRoseWithValue:0.88f],
+                                      [CJPieChartModel modelRoseWithValue:0.7f],
+                                      [CJPieChartModel modelRoseWithValue:0.8f],
+                                      [CJPieChartModel modelRoseWithValue:0.95f],
+                                      [CJPieChartModel modelRoseWithValue:1.0f]];
     _pieChartView.cj_delegate = self;
 //    _pieChartView.pieChartType = CJPieHoopChart;
     _pieChartView.pieHoopWidth = 120;
