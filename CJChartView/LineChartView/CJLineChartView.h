@@ -6,10 +6,10 @@
 //  Copyright © 2017年 Jonathan. All rights reserved.
 //
 
-#import "CJChartView.h"
+#import <UIKit/UIKit.h>
 
 /// 线形统计图
-@interface CJLineChartView : CJChartView
+@interface CJLineChartView : UIView
 
 
 

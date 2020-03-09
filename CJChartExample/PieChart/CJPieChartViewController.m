@@ -9,7 +9,7 @@
 #import "CJPieChartViewController.h"
 
 
-@interface CJPieChartViewController ()<CJChartViewDelegate>
+@interface CJPieChartViewController ()<CJPieChartDelegate>
 
 @property (weak, nonatomic) IBOutlet CJPieChartView *pieChartView;
 

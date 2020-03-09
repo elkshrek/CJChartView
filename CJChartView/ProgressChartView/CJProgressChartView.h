@@ -6,10 +6,10 @@
 //  Copyright © 2017年 Jonathan. All rights reserved.
 //
 
-#import "CJChartView.h"
+#import <UIKit/UIKit.h>
 
 /// 仿网易云音乐等级进度条
-@interface CJProgressChartView : CJChartView
+@interface CJProgressChartView : UIView
 
 @property (nonatomic, assign, readonly) NSInteger totalProgress;// 总进度
 @property (nonatomic, assign, readonly) CGFloat currentProgress;// 当前进度

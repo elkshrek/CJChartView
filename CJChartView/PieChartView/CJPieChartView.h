@@ -6,7 +6,8 @@
 //  Copyright © 2017年 Jonathan. All rights reserved.
 //
 /// 扇形饼图
-#import "CJChartView.h"
+#import <UIKit/UIKit.h>
+#import "CJPieChartDelegate.h"
 #import "CJPieChartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -41,10 +42,10 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 };
 
 /// 扇形饼图
-@interface CJPieChartView : CJChartView
+@interface CJPieChartView : UIView
 
-/// CJChartViewDelegate
-@property (nonatomic, weak) id <CJChartViewDelegate> cj_delegate;
+/// CJPieChartDelegate
+@property (nonatomic, weak) id <CJPieChartDelegate> cj_delegate;
 /// 扇形区域数据源
 @property (nonatomic, strong) NSArray<CJPieChartModel *> *layerPieData;
 

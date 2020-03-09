@@ -10,11 +10,10 @@
 #define CJChartHeader_h
 
 
-// 统计图表基类图
-#import "CJChartView.h"
 
 /// 统计饼图 : 扇形 | 环状
 #import "CJPieChartView.h"
+#import "CJPieChartDelegate.h"
 #import "CJPieChartModel.h"
 
 
