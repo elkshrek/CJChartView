@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
     s.name         = 'CJChartView'
     
     # 库的版本
-    s.version      = '0.0.9'
+    s.version      = '1.0.0'
 
     # 库摘要
     s.summary      = '简单易用的统计图表(包括：扇形图、进度条、柱状图、折线图。。。)'
@@ -28,7 +28,12 @@ Pod::Spec.new do |s|
     s.public_header_files = 'CJChartView/CJChartHeader.h'
     s.source_files = 'CJChartView/CJChartHeader.h'
     
+    s.subspec 'ChartView' do |cvs|
+        cvs.source_files = 'CJChartView/ChartView/**/*.{h,m}'
+    end
+    
     s.subspec 'PieChartView' do |pcs|
+        pcs.dependency 'CJChartView/ChartView'
         pcs.source_files = 'CJChartView/PieChartView/**/*.{h,m}'
         pcs.public_header_files = 'CJChartView/PieChartView/**/*.h'
         pcs.ios.frameworks = 'Foundation', 'UIKit'
