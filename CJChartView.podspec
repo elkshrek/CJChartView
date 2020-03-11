@@ -29,12 +29,12 @@ Pod::Spec.new do |s|
     s.source_files = 'CJChartView/CJChartHeader.h'
     
     s.subspec 'ChartView' do |cvs|
-        cvs.source_files = 'ChartView', 'CJChartView/ChartView/**/*.{h,m}'
+        cvs.source_files = 'CJChartView/ChartView/**/*.{h,m}'
         cvs.public_header_files = 'CJChartView/ChartView/**/*.h'
     end
     
     s.subspec 'PieChartView' do |pcs|
-        pcs.dependency 'CJChartView/ChartView'
+        pcs.dependency 'CJChartView/ChartView/**/*.{h,m}'
         pcs.source_files = 'CJChartView/PieChartView/**/*.{h,m}'
         pcs.public_header_files = 'CJChartView/PieChartView/**/*.h'
         pcs.ios.frameworks = 'Foundation', 'UIKit'
