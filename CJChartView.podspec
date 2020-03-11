@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
     
     s.subspec 'ChartView' do |cvs|
         cvs.source_files = 'CJChartView/ChartView/**/*.{h,m}'
+        cvs.public_header_files = 'CJChartView/ChartView/**/*.h'
     end
     
     s.subspec 'PieChartView' do |pcs|
