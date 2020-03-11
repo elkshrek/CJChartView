@@ -29,7 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param startPer 开始百分比
 /// @param endPer   结束百分比
 + (instancetype)modelWithStart:(CGFloat)startPer end:(CGFloat)endPer;
-
+/// 扇形图Model
+/// value:数据,百分比,小于1
++ (instancetype)modelRoseWithValue:(CGFloat)value;
 
 
 @end
