@@ -17,7 +17,7 @@
 #import "CJPieChartModel.h"
 
 
-/// 线形统计图
+/// 折现线统计图
 #import "CJLineChartView.h"
 #import "CJLineChartModel.h"
 

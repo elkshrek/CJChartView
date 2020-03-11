@@ -243,10 +243,10 @@
 		ABB87DD924121F9C0021DAE9 /* LineChartView */ = {
 			isa = PBXGroup;
 			children = (
-				8872AD4821904A6D00CEE403 /* CJLineChartView.h */,
-				8872AD4921904A6D00CEE403 /* CJLineChartView.m */,
 				ABB87DE2241224910021DAE9 /* CJLineChartModel.h */,
 				ABB87DE3241224910021DAE9 /* CJLineChartModel.m */,
+				8872AD4821904A6D00CEE403 /* CJLineChartView.h */,
+				8872AD4921904A6D00CEE403 /* CJLineChartView.m */,
 			);
 			path = LineChartView;
 			sourceTree = "<group>";
