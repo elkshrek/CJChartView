@@ -73,7 +73,7 @@
     _purfleWidth = 10.f;
     _strikeDuration = 0.2f;
     _showDuration = 0.6f;
-    _pieHoopWidth = 20.f;
+    _pieHoopWidth = 50.f;
     _selectPicChartIndex = -1;
     _selectedPieChart = nil;
     _pieChartType = CJPieNormalChart;
@@ -103,6 +103,9 @@
 // 设置扇形图的分布数据{CJPieChartShowStyleRate风格时layerPieData只有一个元素}
 - (void)setLayerPieData:(NSArray<CJPieChartModel *> *)layerPieData
 {
+    if (!layerPieData.count) {
+        return;
+    }
     NSMutableArray *pieData = [[NSMutableArray alloc] init];
     if (self.pieChartShowStyle == CJPieChartShowStyleNormal || self.pieChartShowStyle == CJPieChartShowStyleJagged) {
         NSInteger count = layerPieData.count;
@@ -116,11 +119,15 @@
         }
     } else if (self.pieChartShowStyle == CJPieChartShowStyleRate) {
         CJPieChartModel *model = [layerPieData firstObject];
-        model.chartColor = [UIColor colorWithRed:(88.f / 256.f) green:(186.f / 256.f) blue:(195.f / 256.f) alpha:0.75f];
+        if (!model.chartColor) {
+            model.chartColor = [UIColor colorWithRed:(88.f / 255.f) green:(186.f / 255.f) blue:(195.f / 255.f) alpha:0.75f];
+        }
         [pieData addObject:model];
     } else if (self.pieChartShowStyle == CJPieChartShowStyleRing) {
         CJPieChartModel *model = [layerPieData firstObject];
-        model.chartColor = [UIColor colorWithRed:(88.f / 256.f) green:(186.f / 256.f) blue:(195.f / 256.f) alpha:0.75f];
+        if (!model.chartColor) {
+            model.chartColor = [UIColor colorWithRed:(88.f / 255.f) green:(186.f / 255.f) blue:(195.f / 255.f) alpha:0.75f];
+        }
         [pieData addObject:model];
     }
     
@@ -149,9 +156,7 @@
         [self setUserInteractionEnabled:NO];
     } else if (pieChartShowStyle == CJPieChartShowStyleRing) {// CJPieChartShowStyleRing
         [self setUserInteractionEnabled:NO];
-    }else if(pieChartShowStyle == CJPieChartShowStyleJagged) {// CJPieChartShowStyleJagged
-        [self setUserInteractionEnabled:YES];
-    }else if( pieChartShowStyle == CJPieChartShowStyleRose) {// CJPieChartShowStyleRose
+    } else if(pieChartShowStyle == CJPieChartShowStyleJagged) {// CJPieChartShowStyleJagged
         [self setUserInteractionEnabled:YES];
     }
     _pieChartShowStyle = pieChartShowStyle;
@@ -268,34 +273,8 @@
         [self addPicChartAnimation:animation];
         [self setPercentageLabelText:nil];
         [self setUserInteractionEnabled:YES];
-    }else if (_pieChartShowStyle == CJPieChartShowStyleRose){
-        
-        CGFloat x = (1.f/_layerPieData.count);//单位扇形所占份额
-        CGFloat sun = x;//累加份额
-        CGFloat startAngle = 0.f * (2 * M_PI) - M_PI_2;//起始角度
-        CGFloat endAngle = sun * (2 * M_PI) - M_PI_2;//结束角度
-        
-        CGFloat lineWidth = 0.f;
-       
-        for (int i = 0; i < _layerPieData.count; i++) {
-            
-           CJPieChartModel *model = _layerPieData[i];
-           lineWidth = (model.endPercentage - model.startPercentage)*self.pieChartOuterRadius;
-           CGFloat radius = self.pieChartInnerRadius + lineWidth / 2;
-           CAShapeLayer *shapeLayer = [self pieShapeLayerCenter:self.pieChartCenter radius:radius lineWidth:lineWidth startAngle:startAngle endAngle:endAngle color:model.chartColor clockwise:YES];
-           [_chartView.layer addSublayer:shapeLayer];
-        //计算下一个扇形的起始角度和s结束角度
-        startAngle = endAngle;//下一个扇形的起始角度 = 上一个扇形的结束角度
-        if (i<_layerPieData.count-1) {
-            sun+=x;
-            endAngle = sun* (2 * M_PI) - M_PI_2;
-         }
-        }
-        [self addPicChartAnimation:animation];
-        [self setPercentageLabelText:nil];
-        [self setUserInteractionEnabled:YES];
-    
     }
+    
 }
 
 // 创建CAShapeLayer

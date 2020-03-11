@@ -17,6 +17,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *removeButton;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *chartTypeSegment;
+@property (weak, nonatomic) IBOutlet UITextField *hoopWidthTextField;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *chartStyleSegment;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *percentageStyleSegment;
@@ -33,25 +36,17 @@
     self.title = @"PieChart";
     
     
-//    _pieChartView.layerPieData = @[[CJPieChartModel modelWithStart:0.f end:0.89f],
-//                                   [CJPieChartModel modelWithStart:0.f end:0.77f],
-//                                   [CJPieChartModel modelWithStart:0.f end:0.88f],
-//                                   [CJPieChartModel modelWithStart:0.f end:0.7f],
-//                                   [CJPieChartModel modelWithStart:0.f end:0.8f],
-//                                   [CJPieChartModel modelWithStart:0.f end:0.95f],
-//                                   [CJPieChartModel modelWithStart:0.f end:1.0f]];
-    //南丁格尔玫瑰图:数据或 [CJPieChartModel modelWithStart:0.f end:1.0f]];
-    _pieChartView.layerPieData = @[[CJPieChartModel modelRoseWithValue:0.89f],
-                                      [CJPieChartModel modelRoseWithValue:0.77f],
-                                      [CJPieChartModel modelRoseWithValue:0.88f],
-                                      [CJPieChartModel modelRoseWithValue:0.7f],
-                                      [CJPieChartModel modelRoseWithValue:0.8f],
-                                      [CJPieChartModel modelRoseWithValue:0.95f],
-                                      [CJPieChartModel modelRoseWithValue:1.0f]];
+    _pieChartView.layerPieData = @[[CJPieChartModel modelWithStart:0.f end:0.15f],
+                                   [CJPieChartModel modelWithStart:0.15f end:0.43f],
+                                   [CJPieChartModel modelWithStart:0.43f end:0.77f],
+                                   [CJPieChartModel modelWithStart:0.77f end:0.84f],
+                                   [CJPieChartModel modelWithStart:0.84f end:1.0f]];
     _pieChartView.cj_delegate = self;
-//    _pieChartView.pieChartType = CJPieHoopChart;
-    _pieChartView.pieHoopWidth = 120;
+    _pieChartView.pieChartType = CJPieChartShowStyleNormal;
+    _pieChartView.pieHoopWidth = 50.f;
     _pieChartView.centerTitle = @"我的财富";
+    
+    [self.hoopWidthTextField setEnabled:NO];
     
     self.refreshButton.layer.cornerRadius = 3.f;
     self.refreshButton.layer.masksToBounds = YES;
@@ -85,6 +80,27 @@
     
 }
 
+
+- (IBAction)chartTypeSegment:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == 0) {
+        _pieChartView.pieChartType = CJPieNormalChart;
+        [self.hoopWidthTextField setEnabled:NO];
+    } else if (sender.selectedSegmentIndex == 1) {
+        _pieChartView.pieChartType = CJPieHoopChart;
+        [self.hoopWidthTextField setEnabled:YES];
+    }
+}
+
+- (IBAction)hoopWidthTextField:(UITextField *)sender
+{
+    if (self.hoopWidthTextField.text.length > 0) {
+        _pieChartView.pieHoopWidth = [self.hoopWidthTextField.text floatValue];
+        [_pieChartView refreshPieChartLayer:YES];
+    }
+}
+
+
 - (IBAction)pieChartStyleSegment:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 0) {
         _pieChartView.pieChartSelectStyle = CJPieChartSelectStylePurfle;
@@ -104,14 +120,17 @@
     } else if (sender.selectedSegmentIndex == 2) {
         _pieChartView.pieChartShowStyle = CJPieChartShowStyleRing;
         [self.chartStyleSegment setEnabled:NO];
-    }else if(sender.selectedSegmentIndex == 3){
+    } else if (sender.selectedSegmentIndex == 3) {
         _pieChartView.pieChartShowStyle = CJPieChartShowStyleJagged;
         [self.chartStyleSegment setEnabled:YES];
-    }else if (sender.selectedSegmentIndex == 4)
-        _pieChartView.pieChartShowStyle = CJPieChartShowStyleRose;
-        [self.chartStyleSegment setEnabled:YES];
+    }
+    
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
 
 
 @end

@@ -29,9 +29,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param startPer 开始百分比
 /// @param endPer   结束百分比
 + (instancetype)modelWithStart:(CGFloat)startPer end:(CGFloat)endPer;
-/// 扇形图Model
-/// value:数据,百分比,小于1
-+ (instancetype)modelRoseWithValue:(CGFloat)value;
+/// 务必使用此方法生成数据模型
+/// @param startPer 开始百分比
+/// @param endPer   结束百分比
+/// @param color    扇形区颜色
++ (instancetype)modelWithStart:(CGFloat)startPer end:(CGFloat)endPer color:(UIColor * _Nullable)color;
+
+
+/// 初始化模型请使用 - modelWithStart:end:
+- (instancetype)init DEPRECATED_MSG_ATTRIBUTE("初始化模型请使用 + modelWithStart:end:");
+/// 创建模型请使用 - modelWithStart:end:
++ (instancetype)new DEPRECATED_MSG_ATTRIBUTE("创建模型请使用 + modelWithStart:end:");
 
 
 @end

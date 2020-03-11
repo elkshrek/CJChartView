@@ -29,8 +29,6 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
     CJPieChartShowStyleRing   = 1 << 2,
     /// 类锯齿效果,扇形半径不等
     CJPieChartShowStyleJagged = 1 << 3,
-    /// 南丁格尔玫瑰图:等分每个扇形,半径代表数值
-    CJPieChartShowStyleRose   = 1 << 4,
     
 };
 
@@ -58,7 +56,7 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 /// 扇形区选中风格 默认CJPieChartSelectStylePurfle
 @property (nonatomic, assign) CJPieChartSelectStyle pieChartSelectStyle;
 
-/// 环宽 饼图样式为CJPieHoopChart时有效 默认:为20
+/// 环宽 饼图样式为CJPieHoopChart时有效 默认:为50
 @property (nonatomic, assign) CGFloat pieHoopWidth;
 /// 外半径 ≈ self.frame.width/2
 @property (nonatomic, assign, readonly) CGFloat pieChartOuterRadius;
