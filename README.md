@@ -3,17 +3,17 @@
 提供方便用户集成使用的统计图表绘制
 持续更新中。。。
 
-效果展示
-
 饼图效果
+![img](https://github.com/elkshrek/CJChartView/blob/master/CJChartExample/ZOthers/gif/PieChart.gif)
 
-
+环状饼图效果
+![img](https://github.com/elkshrek/CJChartView/blob/master/CJChartExample/ZOthers/gif/PieHoopChart.gif)
 
 南丁格尔玫瑰图效果
-
+![img](https://github.com/elkshrek/CJChartView/blob/master/CJChartExample/ZOthers/gif/RoseChart.gif)
 
 仿网易云音乐进度条效果
-![img](https://github.com/CircusJonathan/CJChartView/blob/master/CJChartExample/Others/gif/ChartExampleShow.gif)
+![img](https://github.com/elkshrek/CJChartView/blob/master/CJChartExample/ZOthers/gif/ProgressChart.gif)
 
 
 
