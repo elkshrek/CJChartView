@@ -44,7 +44,7 @@
     _pieChartView.cj_delegate = self;
     _pieChartView.pieChartType = CJPieChartShowStyleNormal;
     _pieChartView.pieHoopWidth = 50.f;
-    _pieChartView.centerTitle = @"我的财富";
+    _pieChartView.centerTitle = @"饼图";
     
     [self.hoopWidthTextField setEnabled:NO];
     

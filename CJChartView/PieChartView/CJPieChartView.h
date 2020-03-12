@@ -48,12 +48,14 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
 /// 扇形区选中风格 默认CJPieChartSelectStylePurfle
 @property (nonatomic, assign) CJPieChartSelectStyle pieChartSelectStyle;
 
-/// 环宽 饼图样式为CJPieHoopChart时有效 默认:为50
+/// 环宽 饼图样式为CJPieHoopChart时有效 默认:为50 最小尺寸必须大于jagWidth
 @property (nonatomic, assign) CGFloat pieHoopWidth;
 /// 外半径 ≈ self.frame.width/2
 @property (nonatomic, assign, readonly) CGFloat pieChartOuterRadius;
 /// 内半径 = 外半径 - 环宽
 @property (nonatomic, assign, readonly) CGFloat pieChartInnerRadius;
+/// 锯齿齿距 展示风格CJPieChartShowStyleJagged时有效 默认: 4.f 环宽较小时齿距会受到环宽的影响，而小于设置值
+@property (nonatomic, assign) CGFloat jagWidth;
 
 @property (nonatomic, strong) UIColor * centerTitleColor;
 @property (nonatomic, strong) NSString * centerTitle;
