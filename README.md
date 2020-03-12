@@ -4,16 +4,16 @@
 持续更新中。。。
 
 饼图效果
-![img](https://github.com/elkshrek/CJChartView/blob/master/CJChartExample/ZOthers/gif/PieChart.gif)
+![img](https://github.com/elkshrek/CJChartView/blob/master/Gallery/PieChart.gif)
 
 环状饼图效果
-![img](https://github.com/elkshrek/CJChartView/blob/master/CJChartExample/ZOthers/gif/PieHoopChart.gif)
+![img](https://github.com/elkshrek/CJChartView/blob/master/Gallery/PieHoopChart.gif)
 
 南丁格尔玫瑰图效果
-![img](https://github.com/elkshrek/CJChartView/blob/master/CJChartExample/ZOthers/gif/RoseChart.gif)
+![img](https://github.com/elkshrek/CJChartView/blob/master/Gallery/RoseChart.gif)
 
 仿网易云音乐进度条效果
-![img](https://github.com/elkshrek/CJChartView/blob/master/CJChartExample/ZOthers/gif/ProgressChart.gif)
+![img](https://github.com/elkshrek/CJChartView/blob/master/Gallery/ProgressChart.gif)
 
 
 
