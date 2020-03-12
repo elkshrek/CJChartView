@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
     s.name         = 'CJChartView'
     
     # 库的版本
-    s.version      = '1.1.1'
+    s.version      = '1.1.0'
 
     # 库摘要
     s.summary      = '简单易用的统计图表(包括：扇形图、进度条、柱状图、折线图。。。)'
@@ -48,12 +48,14 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'ProgressChartView' do |pvs|
+        pvs.dependency 'CJChartView/ChartView'
         pvs.source_files = 'CJChartView/ProgressChartView/**/*.{h,m}'
         pvs.public_header_files = 'CJChartView/ProgressChartView/**/*.h'
         pvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'LineChartView' do |lvs|
+        lvs.dependency 'CJChartView/ChartView'
         lvs.source_files = 'CJChartView/LineChartView/**/*.{h,m}'
         lvs.public_header_files = 'CJChartView/LineChartView/**/*.h'
         lvs.ios.frameworks = 'Foundation', 'UIKit'
