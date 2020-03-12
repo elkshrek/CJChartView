@@ -9,10 +9,6 @@
 #import "CJPieChartView.h"
 
 
-#ifndef CJHexColor
-#define CJHexColor(colorH,a) [UIColor colorWithRed:((float)((colorH & 0xff0000) >> 16)) / 255.0 green:((float)((colorH & 0x00ff00) >> 8)) / 255.0 blue:((float)(colorH & 0x0000ff)) / 255.0 alpha:a]
-#endif
-
 @interface CJPieChartView ()
 
 @property (nonatomic, strong) UIView *chartView;
@@ -63,8 +59,8 @@
 - (void)drawRect:(CGRect)rect
 {
     _pieChartOuterRadius = self.bounds.size.width / 2 - _purfleWidth;
-    _pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.width / 2);
-    [self refreshPieChartLayer:NO];
+    _pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    [self refreshPieChartLayer:YES];
 }
 
 - (void)configChartInfo
@@ -104,6 +100,7 @@
 - (void)setLayerPieData:(NSArray<CJPieChartModel *> *)layerPieData
 {
     if (!layerPieData.count) {
+        _layerPieData = layerPieData;
         return;
     }
     NSMutableArray *pieData = [[NSMutableArray alloc] init];
@@ -203,6 +200,8 @@
     [self setPercentageLabelText:nil];
     self.percentageLabel.center = self.pieChartCenter;
     self.chartView.frame = self.bounds;
+    self.pieChartOuterRadius = self.bounds.size.width / 2.f;
+    self.pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     [self removePieChartLayer];
     [self addPieChartToView:animation];
 }

@@ -9,6 +9,7 @@
 #import "CJRootViewController.h"
 #import "CJPieChartViewController.h"
 #import "CJProgressChartViewController.h"
+#import "CJNightRoseViewController.h"
 
 @interface CJRootViewController ()
 
@@ -33,19 +34,29 @@
     
 }
 
-- (IBAction)PieChartButton:(UIButton *)sender {
+- (IBAction)PieChartButton:(UIButton *)sender
+{
     
     CJPieChartViewController *pieChartVC = [[CJPieChartViewController alloc] init];
     [self.navigationController pushViewController:pieChartVC animated:YES];
     
 }
 
-- (IBAction)ProgressChartButton:(UIButton *)sender {
+- (IBAction)ProgressChartButton:(UIButton *)sender
+{
     
     CJProgressChartViewController *progressChartVC = [[CJProgressChartViewController alloc] init];
     [self.navigationController pushViewController:progressChartVC animated:YES];
     
 }
+
+- (IBAction)roseChartButton:(UIButton *)sender
+{
+    CJNightRoseViewController *roseVC = [[CJNightRoseViewController alloc] init];
+    [self.navigationController pushViewController:roseVC animated:YES];
+    
+}
+
 
 
 @end

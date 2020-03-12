@@ -27,6 +27,10 @@
 #import "CJProgressChartModel.h"
 
 
+/// 南丁格尔玫瑰图
+#import "CJRoseChartView.h"
+#import "CJRoseChartModel.h"
+
 
 
 

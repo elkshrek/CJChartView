@@ -8,6 +8,7 @@
 /// 扇形饼图
 #import <UIKit/UIKit.h>
 #import "CJPieChartDelegate.h"
+#import "CJChartParallelDefinition.h"
 #import "CJPieChartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -29,15 +30,6 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
     CJPieChartShowStyleRing   = 1 << 2,
     /// 类锯齿效果,扇形半径不等
     CJPieChartShowStyleJagged = 1 << 3,
-    
-};
-
-// 选中状态风格
-typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
-    /// 外围添加一个花边   默认值
-    CJPieChartSelectStylePurfle = 1 << 0,
-    /// 向外移动
-    CJPieChartSelectStyleStrike = 1 << 1,
     
 };
 
