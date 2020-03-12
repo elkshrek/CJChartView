@@ -48,6 +48,15 @@
     
 }
 
+- (void)CJPieChartDidUnselect
+{
+    NSLog(@"CJPieChartDidUnselect");
+}
+- (void)CJPieChartDidSelected:(NSInteger)index
+{
+    NSLog(@"CJPieChartDidSelected : index %ld", (long)index);
+}
+
 
 - (void)selStyleSegmentAction:(UISegmentedControl *)sender
 {
@@ -82,7 +91,7 @@
         _selectStyleSegment = [[UISegmentedControl alloc] initWithItems:@[@"Purfle", @"Strike"]];
         _selectStyleSegment.frame = CGRectMake(35.f, CGRectGetMaxY(self.selectLabel.frame) + 5.f, CGRectGetWidth(self.roseChartView.frame), 32.f);
         [_selectStyleSegment setSelectedSegmentIndex:0];
-        [_selectStyleSegment addTarget:self action:@selector(selStyleSegmentAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_selectStyleSegment addTarget:self action:@selector(selStyleSegmentAction:) forControlEvents:UIControlEventValueChanged];
         _selectStyleSegment;
     });
 }

@@ -7,6 +7,7 @@
 //
 
 #import "CJLineChartView.h"
+#import "CJChartParallelDefinition.h"
 
 @implementation CJLineChartView
 

@@ -66,7 +66,7 @@
 - (void)configChartInfo
 {
     _strikeMove = 6.f;
-    _purfleWidth = 10.f;
+    _purfleWidth = 8.f;
     _strikeDuration = 0.2f;
     _showDuration = 0.6f;
     _pieHoopWidth = 50.f;

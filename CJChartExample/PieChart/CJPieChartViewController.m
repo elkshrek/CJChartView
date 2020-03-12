@@ -58,7 +58,7 @@
     
 }
 
-#pragma mark -- CJPieChartViewDelegate
+#pragma mark -- CJPieChartDelegate
 - (void)CJPieChartDidUnselect
 {
     NSLog(@"CJPieChartDidUnselect");
