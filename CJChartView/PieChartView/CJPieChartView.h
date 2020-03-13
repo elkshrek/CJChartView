@@ -8,6 +8,7 @@
 /// 扇形饼图
 #import <UIKit/UIKit.h>
 #import "CJPieChartDelegate.h"
+#import "CJChartParallelDefinition.h"
 #import "CJPieChartModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -32,15 +33,6 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
     
 };
 
-// 选中状态风格
-typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
-    /// 外围添加一个花边   默认值
-    CJPieChartSelectStylePurfle = 1 << 0,
-    /// 向外移动
-    CJPieChartSelectStyleStrike = 1 << 1,
-    
-};
-
 /// 扇形饼图
 @interface CJPieChartView : UIView
 
@@ -56,12 +48,14 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
 /// 扇形区选中风格 默认CJPieChartSelectStylePurfle
 @property (nonatomic, assign) CJPieChartSelectStyle pieChartSelectStyle;
 
-/// 环宽 饼图样式为CJPieHoopChart时有效 默认:为20
+/// 环宽 饼图样式为CJPieHoopChart时有效 默认:为50 最小尺寸必须大于jagWidth
 @property (nonatomic, assign) CGFloat pieHoopWidth;
 /// 外半径 ≈ self.frame.width/2
 @property (nonatomic, assign, readonly) CGFloat pieChartOuterRadius;
 /// 内半径 = 外半径 - 环宽
 @property (nonatomic, assign, readonly) CGFloat pieChartInnerRadius;
+/// 锯齿齿距 展示风格CJPieChartShowStyleJagged时有效 默认: 4.f 环宽较小时齿距会受到环宽的影响，而小于设置值
+@property (nonatomic, assign) CGFloat jagWidth;
 
 @property (nonatomic, strong) UIColor * centerTitleColor;
 @property (nonatomic, strong) NSString * centerTitle;

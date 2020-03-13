@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-// PieChartViewDelegate
+// CJPieChartDelegate
 - (void)CJPieChartDidSelected:(NSInteger)index;
 - (void)CJPieChartDidUnselect;
 

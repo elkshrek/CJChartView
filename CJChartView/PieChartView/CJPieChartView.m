@@ -9,10 +9,6 @@
 #import "CJPieChartView.h"
 
 
-#ifndef CJHexColor
-#define CJHexColor(colorH,a) [UIColor colorWithRed:((float)((colorH & 0xff0000) >> 16)) / 255.0 green:((float)((colorH & 0x00ff00) >> 8)) / 255.0 blue:((float)(colorH & 0x0000ff)) / 255.0 alpha:a]
-#endif
-
 @interface CJPieChartView ()
 
 @property (nonatomic, strong) UIView *chartView;
@@ -63,18 +59,19 @@
 - (void)drawRect:(CGRect)rect
 {
     _pieChartOuterRadius = self.bounds.size.width / 2 - _purfleWidth;
-    _pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.width / 2);
-    [self refreshPieChartLayer:NO];
+    _pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    [self refreshPieChartLayer:YES];
 }
 
 - (void)configChartInfo
 {
     _strikeMove = 6.f;
-    _purfleWidth = 10.f;
+    _purfleWidth = 8.f;
     _strikeDuration = 0.2f;
     _showDuration = 0.6f;
-    _pieHoopWidth = 20.f;
+    _pieHoopWidth = 50.f;
     _selectPicChartIndex = -1;
+    _jagWidth = 4.f;
     _selectedPieChart = nil;
     _pieChartType = CJPieNormalChart;
     _pieChartShowStyle = CJPieChartShowStyleNormal;
@@ -85,11 +82,13 @@
         _chartView.backgroundColor = [UIColor clearColor];
         [self addSubview:_chartView];
         
-        CGFloat radius = _pieChartInnerRadius > 30.f ? _pieChartInnerRadius : 30.f;
+        CGFloat radius = _pieChartInnerRadius > 40.f ? _pieChartInnerRadius : 40.f;
         CGFloat pgWidth = 2.f * radius * cos(M_PI_4);
         _percentageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, pgWidth, pgWidth)];
         _percentageLabel.center = _pieChartCenter;
         _percentageLabel.backgroundColor = [UIColor clearColor];
+        _percentageLabel.numberOfLines = 2;
+        _percentageLabel.adjustsFontSizeToFitWidth = YES;
         _percentageLabel.textColor = UIColor.blackColor; //CJHexColor(0x58bac3, 1.f);
         _percentageLabel.font = [UIFont systemFontOfSize:12.f];
         _percentageLabel.textAlignment = NSTextAlignmentCenter;
@@ -103,6 +102,10 @@
 // 设置扇形图的分布数据{CJPieChartShowStyleRate风格时layerPieData只有一个元素}
 - (void)setLayerPieData:(NSArray<CJPieChartModel *> *)layerPieData
 {
+    if (!layerPieData.count) {
+        _layerPieData = layerPieData;
+        return;
+    }
     NSMutableArray *pieData = [[NSMutableArray alloc] init];
     if (self.pieChartShowStyle == CJPieChartShowStyleNormal || self.pieChartShowStyle == CJPieChartShowStyleJagged) {
         NSInteger count = layerPieData.count;
@@ -116,11 +119,15 @@
         }
     } else if (self.pieChartShowStyle == CJPieChartShowStyleRate) {
         CJPieChartModel *model = [layerPieData firstObject];
-        model.chartColor = [UIColor colorWithRed:(88.f / 256.f) green:(186.f / 256.f) blue:(195.f / 256.f) alpha:0.75f];
+        if (!model.chartColor) {
+            model.chartColor = [UIColor colorWithRed:(88.f / 255.f) green:(186.f / 255.f) blue:(195.f / 255.f) alpha:0.75f];
+        }
         [pieData addObject:model];
     } else if (self.pieChartShowStyle == CJPieChartShowStyleRing) {
         CJPieChartModel *model = [layerPieData firstObject];
-        model.chartColor = [UIColor colorWithRed:(88.f / 256.f) green:(186.f / 256.f) blue:(195.f / 256.f) alpha:0.75f];
+        if (!model.chartColor) {
+            model.chartColor = [UIColor colorWithRed:(88.f / 255.f) green:(186.f / 255.f) blue:(195.f / 255.f) alpha:0.75f];
+        }
         [pieData addObject:model];
     }
     
@@ -149,7 +156,7 @@
         [self setUserInteractionEnabled:NO];
     } else if (pieChartShowStyle == CJPieChartShowStyleRing) {// CJPieChartShowStyleRing
         [self setUserInteractionEnabled:NO];
-    }else if(pieChartShowStyle == CJPieChartShowStyleJagged) {// CJPieChartShowStyleJagged
+    } else if(pieChartShowStyle == CJPieChartShowStyleJagged) {// CJPieChartShowStyleJagged
         [self setUserInteractionEnabled:YES];
     }
     _pieChartShowStyle = pieChartShowStyle;
@@ -186,16 +193,37 @@
         return radius > 0.f ? radius : 0.f;
     }
 }
+- (CGFloat)pieHoopWidth
+{
+    if (_pieHoopWidth <= self.jagWidth) {
+        return self.jagWidth + 1.f;
+    }
+    return _pieHoopWidth;
+}
+- (CGFloat)calUnitJagWidth
+{
+    CGFloat jagUnit = self.jagWidth;
+    CGFloat disJag = self.jagWidth * (self.layerPieData.count - 1);
+    CGFloat lineWidth = self.pieChartOuterRadius - self.pieChartInnerRadius;
+    if (lineWidth < disJag) {
+        CGFloat limitWidth = lineWidth - self.jagWidth;
+        jagUnit = limitWidth / (self.layerPieData.count - 1);
+    }
+    return jagUnit;
+}
 
 // 刷新扇形图层
 - (void)refreshPieChartLayer:(BOOL)animation
 {
-    CGFloat radius = self.pieChartInnerRadius > 30.f ? self.pieChartInnerRadius : 30.f;
+    CGFloat radius = self.pieChartInnerRadius;
     CGFloat pgWidth = 2.f * radius * cos(M_PI_4);
+    pgWidth = pgWidth > 40.f ? pgWidth : 40.f;
     self.percentageLabel.frame = CGRectMake(0, 0, pgWidth, pgWidth);
     [self setPercentageLabelText:nil];
     self.percentageLabel.center = self.pieChartCenter;
     self.chartView.frame = self.bounds;
+    self.pieChartOuterRadius = self.bounds.size.width / 2.f;
+    self.pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     [self removePieChartLayer];
     [self addPieChartToView:animation];
 }
@@ -255,19 +283,20 @@
         [self addAnimationToLayer:self.ringPieChart startPercentage:model.startPercentage endPercentage:model.endPercentage animation:animation];
         [self setPercentageLabelText:model];
     } else if(_pieChartShowStyle == CJPieChartShowStyleJagged) {//锯齿效果
-//        CGFloat fault = (_layerPieData.count * 5);
         CGFloat lineWidth = self.pieChartOuterRadius - self.pieChartInnerRadius;
+        CGFloat jagUnit = [self calUnitJagWidth];
         for (int i = 0; i < _layerPieData.count; i++) {
             CJPieChartModel *model = _layerPieData[i];
             CGFloat radius = self.pieChartInnerRadius + lineWidth / 2;
             CAShapeLayer *shapeLayer = [self pieShapeLayerCenter:self.pieChartCenter radius:radius lineWidth:lineWidth startAngle:model.startAngle endAngle:model.endAngle color:model.chartColor clockwise:YES];
             [_chartView.layer addSublayer:shapeLayer];
-            lineWidth += 5;
+            lineWidth += jagUnit;
         }
         [self addPicChartAnimation:animation];
         [self setPercentageLabelText:nil];
         [self setUserInteractionEnabled:YES];
     }
+    
 }
 
 // 创建CAShapeLayer
@@ -304,7 +333,7 @@
     
     CGFloat distanceFromCenter = sqrtf(powf((touchLoc.y - self.pieChartCenter.y),2) + powf((touchLoc.x - self.pieChartCenter.x),2));
     // 点在扇形区域外面的时候取消选中状态
-    if (distanceFromCenter < _pieChartInnerRadius || distanceFromCenter > _pieChartOuterRadius) {
+    if (distanceFromCenter < self.pieChartInnerRadius || distanceFromCenter > self.pieChartOuterRadius) {
         if ([self.cj_delegate respondsToSelector:@selector(CJPieChartDidUnselect)]) {
             [self.cj_delegate CJPieChartDidUnselect];
         }
@@ -372,8 +401,9 @@
     UIColor *selectColor = [UIColor colorWithRed:redFloat green:greenFloat blue:blueFloat alpha:(alphaFloat * 0.5f)];
     
     CGFloat pieRadius = self.pieChartOuterRadius + _purfleWidth / 2.f;
+    CGFloat jagUnit = [self calUnitJagWidth];
     if (self.pieChartShowStyle == CJPieChartShowStyleJagged) {
-        pieRadius += 5.f * index;
+        pieRadius += jagUnit * index;
     }
     self.selectedPieChart = [self pieShapeLayerCenter:_pieChartCenter radius:pieRadius lineWidth:_purfleWidth startAngle:model.startAngle endAngle:model.endAngle color:selectColor clockwise:YES];
     [_chartView.layer addSublayer:self.selectedPieChart];

@@ -13,7 +13,6 @@
 
 /// 统计饼图 : 扇形 | 环状
 #import "CJPieChartView.h"
-#import "CJPieChartDelegate.h"
 #import "CJPieChartModel.h"
 
 
@@ -27,6 +26,14 @@
 #import "CJProgressChartModel.h"
 
 
+/// 南丁格尔玫瑰图
+#import "CJRoseChartView.h"
+#import "CJRoseChartModel.h"
+
+
+/// 常用定义
+#import "CJPieChartDelegate.h"
+#import "CJChartParallelDefinition.h"
 
 
 
