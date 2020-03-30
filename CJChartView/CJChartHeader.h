@@ -32,8 +32,8 @@
 
 
 /// 柱状图
-#import "CJColumnarChartView.h"
-#import "CJColumnarChartModel.h"
+//#import "CJColumnarChartView.h"
+//#import "CJColumnarChartModel.h"
 
 
 

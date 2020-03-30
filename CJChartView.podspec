@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
     s.name         = 'CJChartView'
     
     # 库的版本
-    s.version      = '1.1.1'
+    s.version      = '1.1.3'
 
     # 库摘要
     s.summary      = '简单易用的统计图表(包括：扇形图、南丁格尔玫瑰图、仿网易云音乐进度条、柱状图、折线图。。。)'
@@ -33,17 +33,24 @@ Pod::Spec.new do |s|
         cvs.public_header_files = 'CJChartView/ChartView/**/*.h'
     end
     
-    s.subspec 'PieChartView' do |pcs|
-        pcs.dependency 'CJChartView/ChartView'
-        pcs.source_files = 'CJChartView/PieChartView/**/*.{h,m}'
-        pcs.public_header_files = 'CJChartView/PieChartView/**/*.h'
-        pcs.ios.frameworks = 'Foundation', 'UIKit'
+    s.subspec 'PieChart' do |pcs|
+        cvs.source_files = 'CJChartView/PieChart/CJPieView.{h,m}'
+        cvs.public_header_files = 'CJChartView/PieChart/CJPieView.h'
+    end
+    
+    s.subspec 'PieChartView' do |pcv|
+        pcv.dependency 'CJChartView/ChartView'
+        pcv.dependency 'CJChartView/PieChart'
+        pcv.source_files = 'CJChartView/PieChart/PieChartView/**/*.{h,m}'
+        pcv.public_header_files = 'CJChartView/PieChart/PieChartView/**/*.h'
+        pcv.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'RoseChartView' do |rcv|
         rcv.dependency 'CJChartView/ChartView'
-        rcv.source_files = 'CJChartView/RoseChartView/**/*.{h,m}'
-        rcv.public_header_files = 'CJChartView/RoseChartView/**/*.h'
+        rcv.dependency 'CJChartView/PieChart'
+        rcv.source_files = 'CJChartView/PieChart/RoseChartView/**/*.{h,m}'
+        rcv.public_header_files = 'CJChartView/PieChart/RoseChartView/**/*.h'
         rcv.ios.frameworks = 'Foundation', 'UIKit'
     end
     
