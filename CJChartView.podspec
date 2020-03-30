@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
     s.name         = 'CJChartView'
     
     # 库的版本
-    s.version      = '1.1.1'
+    s.version      = '1.1.2'
 
     # 库摘要
     s.summary      = '简单易用的统计图表(包括：扇形图、南丁格尔玫瑰图、仿网易云音乐进度条、柱状图、折线图。。。)'
