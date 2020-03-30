@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-// CJPieChartDelegate
+/// 选中扇区
+/// @param index 选中扇区的下标
 - (void)CJPieChartDidSelected:(NSInteger)index;
+/// 取消选中扇区
 - (void)CJPieChartDidUnselect;
 
 

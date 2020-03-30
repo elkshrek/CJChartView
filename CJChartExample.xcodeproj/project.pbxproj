@@ -35,6 +35,9 @@
 		ABB87DDE2412221F0021DAE9 /* CJPieChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB87DDD2412221F0021DAE9 /* CJPieChartModel.m */; };
 		ABB87DE4241224910021DAE9 /* CJLineChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB87DE3241224910021DAE9 /* CJLineChartModel.m */; };
 		ABB87DE824122BFA0021DAE9 /* CJProgressChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB87DE724122BFA0021DAE9 /* CJProgressChartModel.m */; };
+		ABCBB8602431C4CF00FBFAC2 /* CJColumnarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCBB85F2431C4CF00FBFAC2 /* CJColumnarChartView.m */; };
+		ABCBB8632431C54D00FBFAC2 /* CJColumnarChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCBB8622431C54D00FBFAC2 /* CJColumnarChartModel.m */; };
+		ABCBB8682431D82F00FBFAC2 /* CJPieView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCBB8672431D82F00FBFAC2 /* CJPieView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +110,13 @@
 		ABB87DE5241225B30021DAE9 /* CJChartPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJChartPrefixHeader.pch; sourceTree = "<group>"; };
 		ABB87DE624122BFA0021DAE9 /* CJProgressChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJProgressChartModel.h; sourceTree = "<group>"; };
 		ABB87DE724122BFA0021DAE9 /* CJProgressChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJProgressChartModel.m; sourceTree = "<group>"; };
+		ABCBB85E2431C4CF00FBFAC2 /* CJColumnarChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJColumnarChartView.h; sourceTree = "<group>"; };
+		ABCBB85F2431C4CF00FBFAC2 /* CJColumnarChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CJColumnarChartView.m; sourceTree = "<group>"; };
+		ABCBB8612431C54D00FBFAC2 /* CJColumnarChartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJColumnarChartModel.h; sourceTree = "<group>"; };
+		ABCBB8622431C54D00FBFAC2 /* CJColumnarChartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CJColumnarChartModel.m; sourceTree = "<group>"; };
+		ABCBB8642431D45400FBFAC2 /* CJColumnarChartDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJColumnarChartDelegate.h; sourceTree = "<group>"; };
+		ABCBB8662431D82F00FBFAC2 /* CJPieView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CJPieView.h; sourceTree = "<group>"; };
+		ABCBB8672431D82F00FBFAC2 /* CJPieView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CJPieView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,10 +218,10 @@
 			children = (
 				88E287992193EC2500103059 /* CJChartHeader.h */,
 				AB194D1D241899B900DD12EF /* ChartView */,
+				ABCBB85D2431C45A00FBFAC2 /* ColumnarChartView */,
 				ABB87DD924121F9C0021DAE9 /* LineChartView */,
-				ABB87DD824121F6E0021DAE9 /* PieChartView */,
+				ABCBB8652431D7B800FBFAC2 /* PieChart */,
 				ABB87DDA24121FAD0021DAE9 /* ProgressChartView */,
-				AB194D152418982E00DD12EF /* RoseChartView */,
 			);
 			path = CJChartView;
 			sourceTree = "<group>";
@@ -253,8 +263,9 @@
 		AB194D1D241899B900DD12EF /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
-				AB0BCD112416955F0071885D /* CJPieChartDelegate.h */,
 				AB6D324D241915FE009B9247 /* CJChartParallelDefinition.h */,
+				ABCBB8642431D45400FBFAC2 /* CJColumnarChartDelegate.h */,
+				AB0BCD112416955F0071885D /* CJPieChartDelegate.h */,
 			);
 			path = ChartView;
 			sourceTree = "<group>";
@@ -310,6 +321,28 @@
 				8872AD5021904A6D00CEE403 /* CJProgressChartView.m */,
 			);
 			path = ProgressChartView;
+			sourceTree = "<group>";
+		};
+		ABCBB85D2431C45A00FBFAC2 /* ColumnarChartView */ = {
+			isa = PBXGroup;
+			children = (
+				ABCBB8612431C54D00FBFAC2 /* CJColumnarChartModel.h */,
+				ABCBB8622431C54D00FBFAC2 /* CJColumnarChartModel.m */,
+				ABCBB85E2431C4CF00FBFAC2 /* CJColumnarChartView.h */,
+				ABCBB85F2431C4CF00FBFAC2 /* CJColumnarChartView.m */,
+			);
+			path = ColumnarChartView;
+			sourceTree = "<group>";
+		};
+		ABCBB8652431D7B800FBFAC2 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				ABCBB8662431D82F00FBFAC2 /* CJPieView.h */,
+				ABCBB8672431D82F00FBFAC2 /* CJPieView.m */,
+				ABB87DD824121F6E0021DAE9 /* PieChartView */,
+				AB194D152418982E00DD12EF /* RoseChartView */,
+			);
+			path = PieChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCBB8682431D82F00FBFAC2 /* CJPieView.m in Sources */,
 				AB194D1B2418986C00DD12EF /* CJRoseChartModel.m in Sources */,
 				ABB87DE824122BFA0021DAE9 /* CJProgressChartModel.m in Sources */,
 				88E287952193EAE100103059 /* CJPieChartViewController.m in Sources */,
@@ -462,10 +496,12 @@
 				8872AD5221904A6D00CEE403 /* CJLineChartView.m in Sources */,
 				8872AD172190478A00CEE403 /* AppDelegate.m in Sources */,
 				88473893219928E10025A694 /* CJProgressChartViewController.m in Sources */,
+				ABCBB8602431C4CF00FBFAC2 /* CJColumnarChartView.m in Sources */,
 				ABB87DDE2412221F0021DAE9 /* CJPieChartModel.m in Sources */,
 				8872AD5621904A6D00CEE403 /* CJProgressChartView.m in Sources */,
 				AB6D325124194F64009B9247 /* CJNightRoseViewController.m in Sources */,
 				AB3B580C24122ED0003AD66F /* CJPieChartView.m in Sources */,
+				ABCBB8632431C54D00FBFAC2 /* CJColumnarChartModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

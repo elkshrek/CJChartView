@@ -10,17 +10,6 @@
 #define CJChartParallelDefinition_h
 
 
-// 饼图、玫瑰图 选中状态风格
-typedef NS_OPTIONS(NSUInteger, CJPieChartSelectStyle) {
-    /// 外围添加一个花边   默认值
-    CJPieChartSelectStylePurfle = 1 << 0,
-    /// 向外移动
-    CJPieChartSelectStyleStrike = 1 << 1,
-    
-};
-
-
-
 
 
 #ifndef CJHexColor

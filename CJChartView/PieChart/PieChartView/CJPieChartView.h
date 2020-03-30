@@ -6,8 +6,7 @@
 //  Copyright © 2017年 Jonathan. All rights reserved.
 //
 /// 扇形饼图
-#import <UIKit/UIKit.h>
-#import "CJPieChartDelegate.h"
+#import "CJPieView.h"
 #import "CJChartParallelDefinition.h"
 #import "CJPieChartModel.h"
 
@@ -36,10 +35,8 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
 };
 
 /// 扇形饼图
-@interface CJPieChartView : UIView
+@interface CJPieChartView : CJPieView
 
-/// CJPieChartDelegate
-@property (nonatomic, weak) id <CJPieChartDelegate> cj_delegate;
 /// 扇形区域数据源
 @property (nonatomic, strong) NSArray<CJPieChartModel *> *layerPieData;
 
