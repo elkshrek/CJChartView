@@ -30,6 +30,8 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
     CJPieChartShowStyleRing   = 1 << 2,
     /// 类锯齿效果,扇形半径不等
     CJPieChartShowStyleJagged = 1 << 3,
+    /// 裂痕效果，扇形版块相互之间有缝隙
+    CJPieChartShowStyleCrack  = 1 << 4,
     
 };
 
@@ -56,6 +58,8 @@ typedef NS_OPTIONS(NSUInteger, CJPieChartShowStyle) {
 @property (nonatomic, assign, readonly) CGFloat pieChartInnerRadius;
 /// 锯齿齿距 展示风格CJPieChartShowStyleJagged时有效 默认: 4.f 环宽较小时齿距会受到环宽的影响，而小于设置值
 @property (nonatomic, assign) CGFloat jagWidth;
+/// 裂痕大小 展示风格CJPieChartShowStyleCrack时有效 默认：4.f
+@property (nonatomic, assign) CGFloat crackWidth;
 
 @property (nonatomic, strong) UIColor * centerTitleColor;
 @property (nonatomic, strong) NSString * centerTitle;

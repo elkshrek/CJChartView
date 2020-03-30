@@ -4,15 +4,19 @@
 持续更新中。。。
 
 饼图效果
+
 ![img](https://github.com/elkshrek/CJChartView/blob/master/Gallery/PieChart.gif)
 
 环状饼图效果
+
 ![img](https://github.com/elkshrek/CJChartView/blob/master/Gallery/PieHoopChart.gif)
 
 南丁格尔玫瑰图效果
+
 ![img](https://github.com/elkshrek/CJChartView/blob/master/Gallery/RoseChart.gif)
 
 仿网易云音乐进度条效果
+
 ![img](https://github.com/elkshrek/CJChartView/blob/master/Gallery/ProgressChart.gif)
 
 

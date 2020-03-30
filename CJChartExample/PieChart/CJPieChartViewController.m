@@ -123,6 +123,9 @@
     } else if (sender.selectedSegmentIndex == 3) {
         _pieChartView.pieChartShowStyle = CJPieChartShowStyleJagged;
         [self.chartStyleSegment setEnabled:YES];
+    } else if (sender.selectedSegmentIndex == 4) {
+        _pieChartView.pieChartShowStyle = CJPieChartShowStyleCrack;
+        [self.chartStyleSegment setEnabled:YES];
     }
     
 }

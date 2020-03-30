@@ -144,6 +144,7 @@
                         <segment title="rate"/>
                         <segment title="ring"/>
                         <segment title="jagged"/>
+                        <segment title="crack"/>
                     </segments>
                     <connections>
                         <action selector="piePercentageStyleSegment:" destination="-1" eventType="valueChanged" id="uZz-0I-idC"/>
