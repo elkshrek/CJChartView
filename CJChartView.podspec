@@ -3,7 +3,6 @@ Pod::Spec.new do |s|
     s.name         = 'CJChartView'
     
     # 库的版本
-    
     s.version      = '1.1.3'
     
     # 库摘要
@@ -35,8 +34,8 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'PieChart' do |pcs|
-        cvs.source_files = 'CJChartView/PieChart/CJPieView.{h,m}'
-        cvs.public_header_files = 'CJChartView/PieChart/CJPieView.h'
+        pcs.source_files = 'CJChartView/PieChart/CJPieView.{h,m}'
+        pcs.public_header_files = 'CJChartView/PieChart/CJPieView.h'
     end
     
     s.subspec 'PieChartView' do |pcv|

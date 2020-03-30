@@ -31,9 +31,7 @@
 #import "CJLineChartModel.h"
 
 
-/// 柱状图
-//#import "CJColumnarChartView.h"
-//#import "CJColumnarChartModel.h"
+
 
 
 

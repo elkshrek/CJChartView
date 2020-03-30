@@ -29,6 +29,14 @@
 
 
 
+- (void)setLayerColData:(NSArray<CJColumnarChartModel *> *)layerColData
+{
+    
+    _layerColData = layerColData;
+}
+
+
+
 
 
 
