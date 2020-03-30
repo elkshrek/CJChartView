@@ -16,9 +16,9 @@
 #import "CJPieChartModel.h"
 
 
-/// 折现线统计图
-#import "CJLineChartView.h"
-#import "CJLineChartModel.h"
+/// 南丁格尔玫瑰图
+#import "CJRoseChartView.h"
+#import "CJRoseChartModel.h"
 
 
 /// 仿网易云音乐等级进度条
@@ -26,14 +26,24 @@
 #import "CJProgressChartModel.h"
 
 
-/// 南丁格尔玫瑰图
-#import "CJRoseChartView.h"
-#import "CJRoseChartModel.h"
+/// 折现线统计图
+#import "CJLineChartView.h"
+#import "CJLineChartModel.h"
+
+
+/// 柱状图
+#import "CJColumnarChartView.h"
+#import "CJColumnarChartModel.h"
+
+
+
 
 
 /// 常用定义
 #import "CJPieChartDelegate.h"
+#import "CJColumnarChartDelegate.h"
 #import "CJChartParallelDefinition.h"
+
 
 
 

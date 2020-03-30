@@ -116,7 +116,7 @@
         CGFloat startAngle = -M_PI_2 + i * angleUnit;
         CGFloat endAngle = startAngle + angleUnit;
         CGFloat radius = roseSize / 2.f;
-        CAShapeLayer *shapeLayer = [self roseLayerCenter:self.roseCenter radius:radius lineWidth:roseSize startAngle:startAngle endAngle:endAngle color:roseModel.petalColor clockwise:YES];
+        CAShapeLayer *shapeLayer = [self pieShapeLayerCenter:self.roseCenter radius:radius lineWidth:roseSize startAngle:startAngle endAngle:endAngle color:roseModel.petalColor clockwise:YES];
         [self.chartView.layer addSublayer:shapeLayer];
         
         CGFloat measRadius = roseSize + 7.f;
@@ -142,18 +142,6 @@
     }
     [self addAnimationToLayer:YES];
     [self setUserInteractionEnabled:YES];
-}
-
-// 创建CAShapeLayer
-- (CAShapeLayer *)roseLayerCenter:(CGPoint)arcCenter radius:(CGFloat)radius lineWidth:(CGFloat)lineWidth startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle color:(UIColor *)color clockwise:(BOOL)clockwise
-{
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:arcCenter radius:radius startAngle:startAngle endAngle:endAngle clockwise:clockwise];
-    shapeLayer.path = path.CGPath;
-    shapeLayer.fillColor = [UIColor clearColor].CGColor;
-    shapeLayer.strokeColor = color.CGColor;
-    shapeLayer.lineWidth = lineWidth;
-    return shapeLayer;
 }
 
 - (void)addAnimationToLayer:(BOOL)animation
@@ -286,7 +274,7 @@
     CGFloat startAngle = -M_PI_2 + index * angleUnit;
     CGFloat endAngle = startAngle + angleUnit;
     
-    self.selectedRoseChart = [self roseLayerCenter:self.roseCenter radius:laceSize lineWidth:self.purfleWidth startAngle:startAngle endAngle:endAngle color:selectColor clockwise:YES];
+    self.selectedRoseChart = [self pieShapeLayerCenter:self.roseCenter radius:laceSize lineWidth:self.purfleWidth startAngle:startAngle endAngle:endAngle color:selectColor clockwise:YES];
     [self.chartView.layer addSublayer:self.selectedRoseChart];
     self.selectRoseChartIndex = index;
 }
@@ -303,24 +291,24 @@
         NSValue *fromValue = [self pointOfShapeLayer:nowIndex move:0.f];
         NSValue *toValue = [self pointOfShapeLayer:nowIndex move:self.strikeMove];
         CAShapeLayer *nowLayer = (CAShapeLayer *)layers[nowIndex];
-        [self animationChartLayerStrike:nowLayer fromValue:fromValue toValue:toValue];
+        [self animationChartLayerStrike:nowLayer fromValue:fromValue toValue:toValue duration:self.strikeDuration];
         self.selectRoseChartIndex = nowIndex;
     } else if (oldIndex == nowIndex) {// 选择了已经选中的layer
         NSValue *fromValue = [self pointOfShapeLayer:oldIndex move:self.strikeMove];
         NSValue *toValue = [self pointOfShapeLayer:oldIndex move:0.f];
         CAShapeLayer *shapeLayer = (CAShapeLayer *)layers[oldIndex];
-        [self animationChartLayerStrike:shapeLayer fromValue:fromValue toValue:toValue];
+        [self animationChartLayerStrike:shapeLayer fromValue:fromValue toValue:toValue duration:self.strikeDuration];
         self.selectRoseChartIndex = -1;
     } else {// 选择的不是已选中的layer
         NSValue *oldFromValue = [self pointOfShapeLayer:oldIndex move:self.strikeMove];
         NSValue *oldToValue = [self pointOfShapeLayer:oldIndex move:0.f];
         CAShapeLayer *oldLayer = (CAShapeLayer *)layers[oldIndex];
-        [self animationChartLayerStrike:oldLayer fromValue:oldFromValue toValue:oldToValue];
+        [self animationChartLayerStrike:oldLayer fromValue:oldFromValue toValue:oldToValue duration:self.strikeDuration];
         
         NSValue *nowFromValue = [self pointOfShapeLayer:nowIndex move:0.f];
         NSValue *nowToValue = [self pointOfShapeLayer:nowIndex move:self.strikeMove];
         CAShapeLayer *nowLayer = (CAShapeLayer *)layers[nowIndex];
-        [self animationChartLayerStrike:nowLayer fromValue:nowFromValue toValue:nowToValue];
+        [self animationChartLayerStrike:nowLayer fromValue:nowFromValue toValue:nowToValue duration:self.strikeDuration];
         self.selectRoseChartIndex = nowIndex;
     }
     [self setUserInteractionEnabled:NO];
@@ -337,13 +325,7 @@
     NSInteger index = floorl(1.f * percentage * self.layerRoseData.count);
     return index;
 }
-// 获取点击位置的百分位置
-- (CGFloat)findPercentageOfAngleInCircle:(CGPoint)center fromPoint:(CGPoint)reference
-{
-    CGFloat angleOfLine = atanf((reference.y - center.y) / (reference.x - center.x));
-    CGFloat percentage = (angleOfLine + M_PI_2) / (2 * M_PI);
-    return (reference.x - center.x) > 0 ? percentage : percentage + .5;
-}
+
 // 获取当前Layer的中心位置NSValue
 - (NSValue *)pointOfShapeLayer:(NSInteger)index move:(CGFloat)move
 {
@@ -353,18 +335,7 @@
     NSValue *value = [NSValue valueWithCGPoint:centerPoint];
     return value;
 }
-// Strike 向外移动效果动画
-- (void)animationChartLayerStrike:(CAShapeLayer *)shapeLayer fromValue:(NSValue *)fromValue toValue:(NSValue *)toValue
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    animation.fromValue = fromValue;
-    animation.toValue = toValue;
-    animation.duration = self.strikeDuration;
-    animation.removedOnCompletion = NO;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    animation.fillMode = kCAFillModeForwards;
-    [shapeLayer addAnimation:animation forKey:@"StrikeAnimation"];
-}
+
 - (UIView *)chartView
 {
     return _chartView ?: ({

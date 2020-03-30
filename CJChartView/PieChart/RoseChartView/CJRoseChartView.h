@@ -6,19 +6,15 @@
 //  Copyright © 2020 Jonathan. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CJPieView.h"
 #import "CJChartParallelDefinition.h"
-#import "CJPieChartDelegate.h"
 #import "CJRoseChartModel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// 南丁格尔玫瑰图
-@interface CJRoseChartView : UIView
-
-/// CJPieChartDelegate
-@property (nonatomic, weak) id <CJPieChartDelegate> cj_delegate;
+@interface CJRoseChartView : CJPieView
 
 /// 南丁格尔玫瑰图数据源
 @property (nonatomic, strong) NSArray<CJRoseChartModel *> *layerRoseData;

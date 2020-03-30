@@ -316,27 +316,10 @@
     
 }
 
-// 创建CAShapeLayer
-- (CAShapeLayer *)pieShapeLayerCenter:(CGPoint)arcCenter radius:(CGFloat)radius lineWidth:(CGFloat)lineWidth startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle color:(UIColor *)color clockwise:(BOOL)clockwise
-{
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:arcCenter radius:radius startAngle:startAngle endAngle:endAngle clockwise:clockwise];
-    shapeLayer.path = path.CGPath;
-    shapeLayer.fillColor = [UIColor clearColor].CGColor;
-    shapeLayer.strokeColor = color.CGColor;
-    shapeLayer.lineWidth = lineWidth;
-    return shapeLayer;
-}
-
 // 创建环状CAShapeLayer
 - (CAShapeLayer *)ringPieShapeLayerCenter:(CGPoint)arcCenter radius:(CGFloat)radius lineWidth:(CGFloat)lineWidth startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle color:(UIColor *)color clockwise:(BOOL)clockwise
 {
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:arcCenter radius:radius startAngle:startAngle endAngle:endAngle clockwise:clockwise];
-    shapeLayer.path = path.CGPath;
-    shapeLayer.fillColor = [UIColor clearColor].CGColor;
-    shapeLayer.strokeColor = color.CGColor;
-    shapeLayer.lineWidth = lineWidth;
+    CAShapeLayer *shapeLayer = [self pieShapeLayerCenter:arcCenter radius:radius lineWidth:lineWidth startAngle:startAngle endAngle:endAngle color:color clockwise:clockwise];
     shapeLayer.lineCap = kCALineCapRound;
     return shapeLayer;
 }
@@ -445,27 +428,27 @@
         NSValue *fromValue = [self pointOfShapeLayer:nowModel move:0.f];
         NSValue *toValue = [self pointOfShapeLayer:nowModel move:_strikeMove];
         CAShapeLayer *nowLayer = (CAShapeLayer *)layers[nowIndex];
-        [self animationChartLayerStrike:nowLayer fromValue:fromValue toValue:toValue];
+        [self animationChartLayerStrike:nowLayer fromValue:fromValue toValue:toValue duration:self.strikeDuration];
         self.selectPicChartIndex = nowIndex;
     } else if (oldIndex == nowIndex) {// 选择了已经选中的layer
         CJPieChartModel *model = _layerPieData[oldIndex];
         NSValue *fromValue = [self pointOfShapeLayer:model move:_strikeMove];
         NSValue *toValue = [self pointOfShapeLayer:model move:0.f];
         CAShapeLayer *shapeLayer = (CAShapeLayer *)layers[oldIndex];
-        [self animationChartLayerStrike:shapeLayer fromValue:fromValue toValue:toValue];
+        [self animationChartLayerStrike:shapeLayer fromValue:fromValue toValue:toValue duration:self.strikeDuration];
         self.selectPicChartIndex = -1;
     } else {// 选择的不是已选中的layer
         CJPieChartModel *oldModel = _layerPieData[oldIndex];
         NSValue *oldFromValue = [self pointOfShapeLayer:oldModel move:_strikeMove];
         NSValue *oldToValue = [self pointOfShapeLayer:oldModel move:0.f];
         CAShapeLayer *oldLayer = (CAShapeLayer *)layers[oldIndex];
-        [self animationChartLayerStrike:oldLayer fromValue:oldFromValue toValue:oldToValue];
+        [self animationChartLayerStrike:oldLayer fromValue:oldFromValue toValue:oldToValue duration:self.strikeDuration];
         
         CJPieChartModel *nowModel = _layerPieData[nowIndex];
         NSValue *nowFromValue = [self pointOfShapeLayer:nowModel move:0.f];
         NSValue *nowToValue = [self pointOfShapeLayer:nowModel move:_strikeMove];
         CAShapeLayer *nowLayer = (CAShapeLayer *)layers[nowIndex];
-        [self animationChartLayerStrike:nowLayer fromValue:nowFromValue toValue:nowToValue];
+        [self animationChartLayerStrike:nowLayer fromValue:nowFromValue toValue:nowToValue duration:self.strikeDuration];
         self.selectPicChartIndex = nowIndex;
     }
     [self setUserInteractionEnabled:NO];
@@ -499,8 +482,8 @@
     NSInteger index = 0;
     CGFloat percentage = [self findPercentageOfAngleInCircle:self.pieChartCenter fromPoint:touchLoc];
     
-    for (int i = 0; i < _layerPieData.count; i++) {
-        CJPieChartModel *model = _layerPieData[i];
+    for (int i = 0; i < self.layerPieData.count; i++) {
+        CJPieChartModel *model = self.layerPieData[i];
         if (percentage <= model.endPercentage) {
             index = i;
             break;
@@ -510,20 +493,12 @@
     return index;
 }
 
-// 获取点击位置的百分位置
-- (CGFloat)findPercentageOfAngleInCircle:(CGPoint)center fromPoint:(CGPoint)reference
-{
-    CGFloat angleOfLine = atanf((reference.y - center.y) / (reference.x - center.x));
-    CGFloat percentage = (angleOfLine + M_PI_2) / (2 * M_PI);
-    return (reference.x - center.x) > 0 ? percentage : percentage + .5;
-}
-
 #pragma mark - 添加动画
 - (void)addPicChartAnimation:(BOOL)animation
 {
-    NSArray *layers = [_chartView.layer sublayers];
-    for (int i = 0; i < _layerPieData.count; i++) {
-        CJPieChartModel *model = _layerPieData[i];
+    NSArray *layers = [self.chartView.layer sublayers];
+    for (int i = 0; i < self.layerPieData.count; i++) {
+        CJPieChartModel *model = self.layerPieData[i];
         CAShapeLayer *layer = layers[i];
         [self addAnimationToLayer:layer startPercentage:model.startPercentage endPercentage:model.endPercentage animation:animation];
     }
@@ -536,25 +511,12 @@
         CABasicAnimation *shapeAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
         shapeAnimation.fromValue = @0.f;
         shapeAnimation.toValue = @1.f;
-        shapeAnimation.beginTime = CACurrentMediaTime() + _showDuration * startPercentage;
-        shapeAnimation.duration = _showDuration * (endPercentage - startPercentage);
+        shapeAnimation.beginTime = CACurrentMediaTime() + self.showDuration * startPercentage;
+        shapeAnimation.duration = self.showDuration * (endPercentage - startPercentage);
         shapeAnimation.fillMode = kCAFillModeBackwards;
         shapeAnimation.removedOnCompletion = YES;
         [shapeLayer addAnimation:shapeAnimation forKey:@"shapeAnimation"];
     }
-}
-
-// Strike 向外移动效果动画
-- (void)animationChartLayerStrike:(CAShapeLayer *)shapeLayer fromValue:(NSValue *)fromValue toValue:(NSValue *)toValue
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    animation.fromValue = fromValue;
-    animation.toValue = toValue;
-    animation.duration = _strikeDuration;
-    animation.removedOnCompletion = NO;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    animation.fillMode = kCAFillModeForwards;
-    [shapeLayer addAnimation:animation forKey:@"StrikeAnimation"];
 }
 
 
