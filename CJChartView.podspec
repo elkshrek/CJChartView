@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'PieChart' do |pcs|
+        pcs.dependency 'CJChartView/ChartView'
         pcs.source_files = 'CJChartView/PieChart/CJPieView.{h,m}'
         pcs.public_header_files = 'CJChartView/PieChart/CJPieView.h'
     end
