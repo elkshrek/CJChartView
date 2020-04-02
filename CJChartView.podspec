@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
     s.subspec 'CJPieChartView' do |pcs|
         
         pcs.subspec 'CJPieView' do |cpv|
-            cpv.dependency 'CJChartView/ChartView'
+            cpv.dependency 'CJChartView/CJChartView'
             
             cpv.source_files = 'CJChartView/PieChart/CJPieView.{h,m}'
             cpv.public_header_files = 'CJChartView/PieChart/CJPieView.h'
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
         end
         
         pcs.subspec 'CJPieChartView' do |pcv|
-            pcv.dependency 'CJChartView/PieChart'
+            pcv.dependency 'CJChartView/CJPieView'
             
             pcv.source_files = 'CJChartView/PieChart/PieChartView/**/*.{h,m}'
             pcv.public_header_files = 'CJChartView/PieChart/PieChartView/**/*.h'
@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
         end
         
         pcs.subspec 'CJRoseChartView' do |rcv|
-            rcv.dependency 'CJChartView/PieChart'
+            rcv.dependency 'CJChartView/CJPieView'
             
             rcv.source_files = 'CJChartView/PieChart/RoseChartView/**/*.{h,m}'
             rcv.public_header_files = 'CJChartView/PieChart/RoseChartView/**/*.h'
@@ -63,14 +63,14 @@ Pod::Spec.new do |s|
     
     
     s.subspec 'CJProgressChartView' do |pvs|
-        pvs.dependency 'CJChartView/ChartView'
+        pvs.dependency 'CJChartView/CJChartView'
         pvs.source_files = 'CJChartView/ProgressChartView/**/*.{h,m}'
         pvs.public_header_files = 'CJChartView/ProgressChartView/**/*.h'
         pvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'CJLineChartView' do |lvs|
-        lvs.dependency 'CJChartView/ChartView'
+        lvs.dependency 'CJChartView/CJChartView'
         lvs.source_files = 'CJChartView/LineChartView/**/*.{h,m}'
         lvs.public_header_files = 'CJChartView/LineChartView/**/*.h'
         lvs.ios.frameworks = 'Foundation', 'UIKit'
