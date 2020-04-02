@@ -217,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				88E287992193EC2500103059 /* CJChartHeader.h */,
-				AB194D1D241899B900DD12EF /* ChartView */,
+				AB194D1D241899B900DD12EF /* ChartUtils */,
 				ABCBB85D2431C45A00FBFAC2 /* ColumnarChartView */,
 				ABB87DD924121F9C0021DAE9 /* LineChartView */,
 				ABCBB8652431D7B800FBFAC2 /* PieChart */,
@@ -260,14 +260,14 @@
 			path = RoseChartView;
 			sourceTree = "<group>";
 		};
-		AB194D1D241899B900DD12EF /* ChartView */ = {
+		AB194D1D241899B900DD12EF /* ChartUtils */ = {
 			isa = PBXGroup;
 			children = (
 				AB6D324D241915FE009B9247 /* CJChartParallelDefinition.h */,
 				ABCBB8642431D45400FBFAC2 /* CJColumnarChartDelegate.h */,
 				AB0BCD112416955F0071885D /* CJPieChartDelegate.h */,
 			);
-			path = ChartView;
+			path = ChartUtils;
 			sourceTree = "<group>";
 		};
 		AB6D324E24194E97009B9247 /* RoseChart */ = {

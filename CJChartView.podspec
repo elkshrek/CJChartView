@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
     s.name         = 'CJChartView'
     
     # 库的版本
-    s.version      = '1.1.4'
+    s.version      = '1.1.5'
     
     # 库摘要
     s.summary      = '简单易用的统计图表(包括：扇形图、南丁格尔玫瑰图、仿网易云音乐进度条、柱状图、折线图。。。)'
@@ -28,15 +28,15 @@ Pod::Spec.new do |s|
     s.public_header_files = 'CJChartView/CJChartHeader.h'
     s.source_files = 'CJChartView/CJChartHeader.h'
     
-    s.subspec 'CJChartView' do |cvs|
-        cvs.source_files = 'CJChartView/ChartView/**/*.{h,m}'
-        cvs.public_header_files = 'CJChartView/ChartView/**/*.h'
+    s.subspec 'CJChartUtils' do |cvs|
+        cvs.source_files = 'CJChartView/ChartUtils/**/*.{h,m}'
+        cvs.public_header_files = 'CJChartView/ChartUtils/**/*.h'
     end
     
-    s.subspec 'CJPieChartView' do |pcs|
+    s.subspec 'CJPieChart' do |pcs|
         
         pcs.subspec 'CJPieView' do |cpv|
-            cpv.dependency 'CJChartView/CJChartView'
+            cpv.dependency 'CJChartView/CJChartUtils'
             
             cpv.source_files = 'CJChartView/PieChart/CJPieView.{h,m}'
             cpv.public_header_files = 'CJChartView/PieChart/CJPieView.h'
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
         end
         
         pcs.subspec 'CJPieChartView' do |pcv|
-            pcv.dependency 'CJChartView/CJPieChartView/CJPieView'
+            pcv.dependency 'CJChartView/CJPieChart/CJPieView'
             
             pcv.source_files = 'CJChartView/PieChart/PieChartView/**/*.{h,m}'
             pcv.public_header_files = 'CJChartView/PieChart/PieChartView/**/*.h'
@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
         end
         
         pcs.subspec 'CJRoseChartView' do |rcv|
-            rcv.dependency 'CJChartView/CJPieChartView/CJPieView'
+            rcv.dependency 'CJChartView/CJPieChart/CJPieView'
             
             rcv.source_files = 'CJChartView/PieChart/RoseChartView/**/*.{h,m}'
             rcv.public_header_files = 'CJChartView/PieChart/RoseChartView/**/*.h'
@@ -63,14 +63,14 @@ Pod::Spec.new do |s|
     
     
     s.subspec 'CJProgressChartView' do |pvs|
-        pvs.dependency 'CJChartView/CJChartView'
+        pvs.dependency 'CJChartView/CJChartUtils'
         pvs.source_files = 'CJChartView/ProgressChartView/**/*.{h,m}'
         pvs.public_header_files = 'CJChartView/ProgressChartView/**/*.h'
         pvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
     s.subspec 'CJLineChartView' do |lvs|
-        lvs.dependency 'CJChartView/CJChartView'
+        lvs.dependency 'CJChartView/CJChartUtils'
         lvs.source_files = 'CJChartView/LineChartView/**/*.{h,m}'
         lvs.public_header_files = 'CJChartView/LineChartView/**/*.h'
         lvs.ios.frameworks = 'Foundation', 'UIKit'
