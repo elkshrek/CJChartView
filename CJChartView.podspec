@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
         end
         
         pcs.subspec 'CJPieChartView' do |pcv|
-            pcv.dependency 'CJChartView/CJPieView'
+            pcv.dependency 'CJChartView/CJPieChartView/CJPieView'
             
             pcv.source_files = 'CJChartView/PieChart/PieChartView/**/*.{h,m}'
             pcv.public_header_files = 'CJChartView/PieChart/PieChartView/**/*.h'
@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
         end
         
         pcs.subspec 'CJRoseChartView' do |rcv|
-            rcv.dependency 'CJChartView/CJPieView'
+            rcv.dependency 'CJChartView/CJPieChartView/CJPieView'
             
             rcv.source_files = 'CJChartView/PieChart/RoseChartView/**/*.{h,m}'
             rcv.public_header_files = 'CJChartView/PieChart/RoseChartView/**/*.h'
