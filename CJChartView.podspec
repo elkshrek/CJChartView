@@ -28,27 +28,32 @@ Pod::Spec.new do |s|
     s.public_header_files = 'CJChartView/CJChartHeader.h'
     s.source_files = 'CJChartView/CJChartHeader.h'
     
-    s.subspec 'ChartView' do |cvs|
+    s.subspec 'CJChartView' do |cvs|
         cvs.source_files = 'CJChartView/ChartView/**/*.{h,m}'
         cvs.public_header_files = 'CJChartView/ChartView/**/*.h'
     end
     
-    s.subspec 'PieChart' do |pcs|
-        pcs.dependency 'CJChartView/ChartView'
-        pcs.source_files = 'CJChartView/PieChart/CJPieView.{h,m}'
-        pcs.public_header_files = 'CJChartView/PieChart/CJPieView.h'
+    s.subspec 'CJPieChartView' do |pcs|
         
-        pcs.subspec 'PieChartView' do |pcv|
-            pcv.dependency 'CJChartView/ChartView'
+        pcs.subspec 'CJPieView' do |cpv|
+            cpv.dependency 'CJChartView/ChartView'
+            
+            cpv.source_files = 'CJChartView/PieChart/CJPieView.{h,m}'
+            cpv.public_header_files = 'CJChartView/PieChart/CJPieView.h'
+            cpv.ios.frameworks = 'Foundation', 'UIKit'
+        end
+        
+        pcs.subspec 'CJPieChartView' do |pcv|
             pcv.dependency 'CJChartView/PieChart'
+            
             pcv.source_files = 'CJChartView/PieChart/PieChartView/**/*.{h,m}'
             pcv.public_header_files = 'CJChartView/PieChart/PieChartView/**/*.h'
             pcv.ios.frameworks = 'Foundation', 'UIKit'
         end
         
-        pcs.subspec 'RoseChartView' do |rcv|
-            rcv.dependency 'CJChartView/ChartView'
+        pcs.subspec 'CJRoseChartView' do |rcv|
             rcv.dependency 'CJChartView/PieChart'
+            
             rcv.source_files = 'CJChartView/PieChart/RoseChartView/**/*.{h,m}'
             rcv.public_header_files = 'CJChartView/PieChart/RoseChartView/**/*.h'
             rcv.ios.frameworks = 'Foundation', 'UIKit'
@@ -57,14 +62,14 @@ Pod::Spec.new do |s|
     end
     
     
-    s.subspec 'ProgressChartView' do |pvs|
+    s.subspec 'CJProgressChartView' do |pvs|
         pvs.dependency 'CJChartView/ChartView'
         pvs.source_files = 'CJChartView/ProgressChartView/**/*.{h,m}'
         pvs.public_header_files = 'CJChartView/ProgressChartView/**/*.h'
         pvs.ios.frameworks = 'Foundation', 'UIKit'
     end
     
-    s.subspec 'LineChartView' do |lvs|
+    s.subspec 'CJLineChartView' do |lvs|
         lvs.dependency 'CJChartView/ChartView'
         lvs.source_files = 'CJChartView/LineChartView/**/*.{h,m}'
         lvs.public_header_files = 'CJChartView/LineChartView/**/*.h'
