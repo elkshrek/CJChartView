@@ -60,7 +60,7 @@
 {
     _pieChartOuterRadius = self.bounds.size.width / 2 - _purfleWidth;
     _pieChartCenter = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
-    [self refreshPieChartLayer:YES];
+    [self refreshPieChartLayer:NO];
 }
 
 - (void)configChartInfo
@@ -134,19 +134,19 @@
     
     _layerPieData = pieData;
     [self removePieChartLayer];
-    [self addPieChartToView:YES];
+    [self addPieChartToView:NO];
 }
 
 - (void)setPieChartType:(CJPieChartType)pieChartType
 {
     _pieChartType = pieChartType;
-    [self refreshPieChartLayer:YES];
+    [self refreshPieChartLayer:NO];
 }
 
 - (void)setPieChartSelectStyle:(CJPieChartSelectStyle)pieChartSelectStyle
 {
     _pieChartSelectStyle = pieChartSelectStyle;
-    [self refreshPieChartLayer:YES];
+    [self refreshPieChartLayer:NO];
 }
 
 - (void)setPieChartShowStyle:(CJPieChartShowStyle)pieChartShowStyle
@@ -163,7 +163,7 @@
         [self setUserInteractionEnabled:YES];
     }
     _pieChartShowStyle = pieChartShowStyle;
-    [self refreshPieChartLayer:YES];
+    [self refreshPieChartLayer:NO];
 }
 
 - (void)setCenterTitleColor:(UIColor *)centerTitleColor
